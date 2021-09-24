@@ -1,26 +1,26 @@
-from rainapp.mod_users.auth import roles_allowed
+from complaintsapp.mod_users.auth import roles_allowed
 from flask import request, Blueprint, jsonify, current_app
 from flask_jwt_extended import get_jwt, unset_jwt_cookies, create_access_token, get_jwt_identity, jwt_required, \
     set_access_cookies
-from flask_expects_json import expects_json
-from rainapp import db, bcrypt
+# from flask_expects_json import expects_json
+from complaintsapp import db, bcrypt
 from datetime import datetime, timedelta, timezone
-from rainapp.mod_users.model import User, Role, roles_users_table
+from complaintsapp.mod_users.model import User, Role, roles_users_table
 
 applet = Blueprint('users', __name__, url_prefix='/api/users')
 
-user_schema = {
-    'type': 'object',
-    'properties': {
-        'name': {'type': 'string'},
-        'email': {'type': 'string'},
-        'phone': {'type': 'string'},
-        'role': {'type': 'string'},
-        'password': {'type': 'string'},
-        'active': {'type': 'boolean'}
-    },
-    'required': ['name', 'email', 'phone', 'role']
-}
+# user_schema = {
+#     'type': 'object',
+#     'properties': {
+#         'name': {'type': 'string'},
+#         'email': {'type': 'string'},
+#         'phone': {'type': 'string'},
+#         'role': {'type': 'string'},
+#         'password': {'type': 'string'},
+#         'active': {'type': 'boolean'}
+#     },
+#     'required': ['name', 'email', 'phone', 'role']
+# }
 
 
 @applet.after_request
@@ -64,19 +64,19 @@ def get_user_details(user_id):
     return {'message': 'fail'}, 404
 
 
-user_update_schema = {
-    'type': 'object',
-    'properties': {
-        'name': {'type': 'string'},
-        'phone': {'type': 'string'},
-    },
-    'required': ['name', 'phone']
-}
+# user_update_schema = {
+#     'type': 'object',
+#     'properties': {
+#         'name': {'type': 'string'},
+#         'phone': {'type': 'string'},
+#     },
+#     'required': ['name', 'phone']
+# }
 
 
 @applet.route('/<user_id>', methods=['PUT'])
 @jwt_required()
-@expects_json(user_update_schema, force=True)
+# @expects_json(user_update_schema, force=True)
 def edit_user_details(user_id):
     try:
         user_id = int(user_id)
@@ -111,28 +111,28 @@ def delete_user_details(user_id):
     return '', 204
 
 
-@applet.route('/collectors', methods=['GET'])
-@jwt_required()
-def get_all_collectors():
-    try:
-        role = [r[0] for r in db.session.query(roles_users_table).filter_by(role_id=2).all()]
-        collectors = User.query.filter(User.id.in_(role)).all()
-        response = jsonify([collector.to_dict() for collector in collectors])
-        return response
-    except:
-        return {'message': 'server error'}, 500
+# @applet.route('/collectors', methods=['GET'])
+# @jwt_required()
+# def get_all_collectors():
+#     try:
+#         role = [r[0] for r in db.session.query(roles_users_table).filter_by(role_id=2).all()]
+#         collectors = User.query.filter(User.id.in_(role)).all()
+#         response = jsonify([collector.to_dict() for collector in collectors])
+#         return response
+#     except:
+#         return {'message': 'server error'}, 500
 
 
-@applet.route('/admins', methods=['GET'])
-@jwt_required()
-def get_all_admins():
-    try:
-        role = [r[0] for r in db.session.query(roles_users_table).filter_by(role_id=1).all()]
-        admins = User.query.filter(User.id.in_(role)).all()
-        response = jsonify([admin.to_dict() for admin in admins])
-        return response
-    except:
-        return {'message': 'server error'}, 500
+# @applet.route('/admins', methods=['GET'])
+# @jwt_required()
+# def get_all_admins():
+#     try:
+#         role = [r[0] for r in db.session.query(roles_users_table).filter_by(role_id=1).all()]
+#         admins = User.query.filter(User.id.in_(role)).all()
+#         response = jsonify([admin.to_dict() for admin in admins])
+#         return response
+#     except:
+#         return {'message': 'server error'}, 500
 
 
 @applet.route('/logout', methods=['POST'])
@@ -144,8 +144,8 @@ def logout():
 
 @applet.route('/signup', methods=['POST'])
 @jwt_required()
-@roles_allowed('admin')
-@expects_json(user_schema, force=True)
+# @roles_allowed('admin')
+# @expects_json(user_schema, force=True)
 def signup():
     content = request.get_json(silent=True)
     name = content['name']

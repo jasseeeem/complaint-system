@@ -1,4 +1,4 @@
-from rainapp import db
+from complaintsapp import db
 from sqlalchemy.orm import relationship, Session
 from sqlalchemy_serializer import SerializerMixin
 
@@ -10,10 +10,8 @@ roles_users_table = db.Table(
 
 class Role(db.Model, SerializerMixin):
     __tablename__ = 'roles'
-
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(50), unique=True)
-
     def __str__(self):
         return self.name
 

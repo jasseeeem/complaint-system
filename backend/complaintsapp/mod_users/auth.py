@@ -1,7 +1,7 @@
 from functools import wraps
 
 import flask
-from rainapp.mod_users.model import User
+from complaintsapp.mod_users.model import User
 from flask_jwt_extended import get_jwt_identity
 
 def roles_allowed(*roles):

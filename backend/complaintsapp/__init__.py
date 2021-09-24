@@ -1,10 +1,12 @@
 import os
+from datetime import timedelta
+
 from flask_cors import CORS
 from flask import Flask, g
 from dotenv import load_dotenv
 from flask_jwt_extended import  JWTManager
 from flask_bcrypt import Bcrypt
-from datetime import timedelta
+from flask_sqlalchemy import SQLAlchemy
 
 def create_app():
     app = Flask("complaintsapp")
@@ -32,10 +34,15 @@ def create_app():
     global jwt
     jwt = JWTManager(app)
 
+    global db
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URI")
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    db = SQLAlchemy(app)
+
     from complaintsapp.mod_users.controller import applet as users_applet
-    # from . import db 
-    # db.init_app(app) 
-    # db.create_all()
+    from complaintsapp.mod_users.model import Role
+
     app.register_blueprint(users_applet)
     return app
 
