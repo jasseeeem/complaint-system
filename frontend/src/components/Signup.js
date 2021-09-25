@@ -249,7 +249,8 @@ const Signup = ({ user, changeUser }) => {
                 </div>
               </div>
             </Form>
-          </div></div>
+          </div>
+          </div>
       )}
     </>
   );

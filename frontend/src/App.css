@@ -8,13 +8,34 @@
   color: aliceblue;
 }
 
-.Dropdown {
-  color: black;
+.kbd-navigation .square:focus {
+  background: #ddd;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 15px;
+  background-color: rgba(196, 194, 194, 0.644);
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(236, 239, 243, 0.712);
+  width: 5px;
 }
 
 html {
   height: 100%;
 }
+
+html {
+  height: 100%;
+}
+
 #complaint_button{
 width: max-content;
 padding: 9px;
@@ -30,10 +51,10 @@ body {
   /* width: 100%; */
   
   /* height: 100%; */
+  overflow: hidden;
   background-repeat: no-repeat;
   background-image: linear-gradient(to top right, #000428 15%, #04559c 100%);
-  overflow: scroll;
-  
+    
   background-attachment: fixed;
 }
 
@@ -70,6 +91,15 @@ min-width: 70vw;
   justify-content: center;
 }
 
+
+.flex-container1{
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
 .login-block {
   border-radius: 8px;
   box-shadow:1px 15px 10px 8px rgba(0, 0, 0, 0.123);
@@ -77,6 +107,17 @@ min-width: 70vw;
   width: 500px;
   max-width: 85vw;
 }
+
+.login-block1 {
+  overflow-y:scroll ;
+  border-radius: 8px;
+  box-shadow:1px 15px 10px 8px rgba(0, 0, 0, 0.123);
+  background-color:rgba(224, 240, 255, 0.185);
+  max-height: 75vh;
+  width: 800px;
+  max-width: 85vw;
+}
+
 
 Button{
   border-radius: 200px;
@@ -106,12 +147,19 @@ Button{
   min-width: 100%;
 } */
 .complaint {
-  border-bottom: 2px solid white;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.74);
   /* background-color: ligh; */
 }
 
 .first-line {
   display: inline-block
+}
+
+
+
+h3{
+  color:rgb(236, 246, 255);
 }
 
 .complaint {

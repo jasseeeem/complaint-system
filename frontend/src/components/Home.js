@@ -143,15 +143,13 @@ const Home = ({user, users}) => {
 
     return (
         <div>
-            
             {user ? 
              <div>
-                    {/* <h2>Welcome {user && user.name}</h2>                   */}
                 <div className="top">
                   <div className="sort">
                     <h5 className="me-3 pt-2">Sort by: </h5>
                     <Select
-                    className="Dropdown"
+                      className="Dropdown"
                       value={sortTypes.filter(
                         (option) => option.value === sortType
                       )}
@@ -169,11 +167,13 @@ const Home = ({user, users}) => {
                       className="mb-3 btn-md btn-dark post-button" 
                       onClick={() => routeChange(`/add`)}>
                       POST COMPLAINT
-                   </Button>
+                      </Button>
                   </div>
                 </div>
-
-                {complaintsLoading ?
+                {complaintsLoading 
+                  ?
+                <div className="flex-container1">
+                  <div className="login-block1">
                     <div className="complaints">
                         {complaints.map(complaint => {
                              return (
@@ -204,10 +204,13 @@ const Home = ({user, users}) => {
                                         {userLiked(complaint) ? <AiFillLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} /> : <AiOutlineLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} />}
                                         <span>{complaint.likes.length ? (complaint.likes.length > 1 ? complaint.likes.length + " likes": "1 like") : ""}</span>
                                     </div>
-                                  </div>
+                                   </div>
+                                 
                                 </div>
                             )
                         })}
+                        </div>
+                      </div>
                     </div>
                 :
                   <div className="container text-center mt-5">
@@ -215,6 +218,7 @@ const Home = ({user, users}) => {
                   </div>
                 }
               </div>
+              
             :   
                 <div className="form-center">
                   <h3>Welcome</h3> 
