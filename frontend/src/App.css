@@ -75,3 +75,12 @@ Button{
   height: 100%;
 }
 
+.complaint {
+  color: white;
+  border-bottom: 2px solid white;
+  /* background-color: ligh; */
+}
+
+.first-line {
+  display: inline-block
+}
