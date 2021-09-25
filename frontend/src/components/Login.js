@@ -96,7 +96,7 @@ const Login = ({user, setUser}) => {
       // console.log(data)
       setUser(data => data);
       history.push("/");
-    } else addNotification("Invalid email or password", "error");
+    } else addNotification("Invalid reg. no or password", "error");
     setLogging(false);
   };
 

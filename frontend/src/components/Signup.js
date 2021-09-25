@@ -133,7 +133,7 @@ const Signup = ({ user, setUser }) => {
       return;
     }
     setAdding(false);
-    addNotification("Email or phone already taken", "error");
+    addNotification("Reg no already taken", "error");
   };
 
   return (
