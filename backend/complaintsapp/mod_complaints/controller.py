@@ -27,3 +27,14 @@ def add_complaint():
 # @applet.route('/<complaint_id>', methods=['DELTE'])
 # @jwt_required()
 # def delete_complaint():
+
+@applet.route('/', methods=['GET'])
+@jwt_required()
+def get_all_collectors():
+    try:
+        # role = [r[0] for r in db.session.query(roles_users_table).filter_by(role_id=1).all()]
+        complaints = Complaint.query.limit(10).all()
+        response = jsonify([complaint.to_dict() for complaint in complaints])
+        return response
+    except:
+        return {'message': 'complaints list cannot be fetched'}, 500

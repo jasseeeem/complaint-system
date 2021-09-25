@@ -5,6 +5,6 @@ CREATE TABLE IF NOT EXISTS Complaints (
     image BYTEA,
     user_id INT NOT NULL,    --For the user created 
     FOREIGN KEY(user_id)
-        REFERENCES users(id)
+        REFERENCES users(id) ON DELETE CASCADE 
 );
 

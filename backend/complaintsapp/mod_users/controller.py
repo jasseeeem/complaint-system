@@ -109,18 +109,16 @@ def delete_user_details(user_id):
     db.session.commit()
     return '', 204
 
-
-# @applet.route('/collectors', methods=['GET'])
-# @jwt_required()
-# def get_all_collectors():
-#     try:
-#         role = [r[0] for r in db.session.query(roles_users_table).filter_by(role_id=2).all()]
-#         collectors = User.query.filter(User.id.in_(role)).all()
-#         response = jsonify([collector.to_dict() for collector in collectors])
-#         return response
-#     except:
-#         return {'message': 'server error'}, 500
-
+@applet.route('/', methods=['GET'])
+@jwt_required()
+def get_all_collectors():
+    try:
+        # role = [r[0] for r in db.session.query(roles_users_table).filter_by(role_id=1).all()]
+        users = User.query.all()
+        response = jsonify([user.to_dict() for user in users])
+        return response
+    except:
+        return {'message': 'users list cannot be fetched'}, 500
 
 # @applet.route('/admins', methods=['GET'])
 # @jwt_required()
