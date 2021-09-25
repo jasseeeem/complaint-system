@@ -68,8 +68,6 @@ min-width: 70vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 70vw;
-
 }
 
 .login-block {
@@ -78,7 +76,6 @@ min-width: 70vw;
   background-color:rgba(224, 240, 255, 0.185);
   width: 500px;
   max-width: 85vw;
-  
 }
 
 Button{
