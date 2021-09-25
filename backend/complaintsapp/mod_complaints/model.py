@@ -37,4 +37,5 @@ class Complaint(db.Model, SerializerMixin):
     hostel_id = db.Column(db.Integer, ForeignKey('hostels.id', ondelete='SET NULL'), nullable=True)
     room_no = db.Column(db.Integer)
     votes = db.Column(db.Integer)
+    set_time = db.Column(db.DateTime)
     user = relationship('User')

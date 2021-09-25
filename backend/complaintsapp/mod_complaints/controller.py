@@ -1,3 +1,4 @@
+from datetime import datetime, tzinfo
 from flask import json, request, Blueprint, jsonify
 from complaintsapp import db
 from flask_jwt_extended import jwt_required
@@ -16,7 +17,7 @@ def add_complaint():
     image = content['image']
     user_id = content['user_id']
     hostel = content['hostel']
-    complaint = Complaint(title=title, description=description, image=image, user_id=user_id, room_no=room, hostel_id=hostel, votes=0)
+    complaint = Complaint(title=title, description=description, image=image, user_id=user_id, room_no=room, hostel_id=hostel, votes=0, set_time=datetime.utcnow() )
     #print(complaint)
     db.session.add(complaint)
     db.session.commit()
