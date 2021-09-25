@@ -97,6 +97,8 @@ const AddComplaint = ({ user }) => {
     const onAdd = async(e) => {
         e.preventDefault();
         setAdding(true)
+        const fd = new FormData();
+        fd.append('image', image, image.name);
         let response = await fetch(process.env.REACT_APP_API_URL + "/complaints/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -105,7 +107,8 @@ const AddComplaint = ({ user }) => {
               description: description,
               hostel: hostelType,
               room: room,
-              image: image,
+              image: fd,
+              user_id: user.id
             }),
           });
           //console.log(image);
@@ -156,7 +159,12 @@ const AddComplaint = ({ user }) => {
                 <Input
                     type="file"
                     accept="image/png, image/jpg, image/jpeg"
-                    onChange={(e) => setImage(e.target.files[0])}
+                    onChange={(e) => {
+                        // const file = Array.from(e.target.value)
+                        // const formData = new FormData();
+                        // formData.append(file)
+                        setImage(e.target.files[0])
+                    }}
                 />
               </FormGroup>
               <FormGroup className="mb-3">
