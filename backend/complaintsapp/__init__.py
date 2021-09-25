@@ -44,9 +44,11 @@ def create_app():
     db = SQLAlchemy(app)
 
     from complaintsapp.mod_users.controller import applet as users_applet
+    from complaintsapp.mod_complaints.controller import applet as complaints_applet
     from complaintsapp.mod_users.model import Role
 
     app.register_blueprint(users_applet)
+    app.register_blueprint(complaints_applet)
     return app
 
 if __name__ == "__main__":

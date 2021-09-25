@@ -1,6 +1,6 @@
 from complaintsapp.mod_users.auth import roles_allowed
-from flask import request, Blueprint, jsonify, current_app
-from flask_jwt_extended import get_jwt, unset_jwt_cookies, create_access_token, get_jwt_identity, jwt_required, \
+from flask import request, Blueprint, jsonify
+from flask_jwt_extended import unset_jwt_cookies, create_access_token, get_jwt_identity, jwt_required, \
     set_access_cookies
 # from flask_expects_json import expects_json
 from complaintsapp import db, bcrypt
