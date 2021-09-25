@@ -25,5 +25,5 @@ class Complaint(db.Model, SerializerMixin):
     title = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(255), nullable=True)
     image = db.Column(db.LargeBinary, nullable=True)
-    user_id = db.Column(db.Integer, foreign('users.id', ondelete='SET NULL'), nullable=True)
+    user_id = db.Column(db.Integer, ForeignKey('users.id', ondelete='SET NULL'), nullable=True)
     time_col = db.Column(db.DateTime)
