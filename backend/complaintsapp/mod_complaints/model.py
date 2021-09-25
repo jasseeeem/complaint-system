@@ -28,3 +28,4 @@ class Complaint(db.Model, SerializerMixin):
     image = db.Column(db.LargeBinary, nullable=True)
     user_id = db.Column(db.Integer, ForeignKey('users.id', ondelete='SET NULL'), nullable=True)
     set_time = db.Column(db.DateTime)
+    user = relationship('User')

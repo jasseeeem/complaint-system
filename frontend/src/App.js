@@ -29,17 +29,17 @@ function App() {
               credentials: "include",
             })
           ]);
-      userVerifyResponse = await userVerifyResponse.json()
-      usersResponse = await usersResponse.json()
 
       if (userVerifyResponse.ok) {
+      userVerifyResponse = await userVerifyResponse.json()
         setUser(userVerifyResponse);
       } else {
         setUser(null);
       }
-      if (userVerifyResponse.ok) {
-        console.log(userVerifyResponse)
-        // setUsers(userVerifyResponse);
+      if (usersResponse.ok) {
+      usersResponse = await usersResponse.json()
+        // console.log(userVerifyResponse)
+        setUsers(userVerifyResponse);
       } else {
         setUsers([]);
       }

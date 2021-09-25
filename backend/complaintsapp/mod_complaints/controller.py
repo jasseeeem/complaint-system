@@ -20,6 +20,22 @@ def add_complaint():
     db.session.remove()
     return jsonify({'message': 'Complaint added successfully'}, 201)
 
+@applet.route('/<complaint_id>/like', methods=['POST'])
+# @jwt_required()
+def like_complaint(complaint_id):
+    content = request.get_json(silent=True)
+    user_id = content['user_id']
+    like = Vote.query.filter(Vote.user_id == user_id).filter(Vote.complaint_id == complaint_id).first()
+    if not like:
+        like = Vote(user_id=user_id, complaint_id=complaint_id)
+        db.session.add(like)
+        db.session.commit()
+        db.session.remove()
+        return jsonify({'message': "post liked"}, 201)
+    db.session.delete(like)
+    db.session.commit()
+    return jsonify({'message': 'post unliked'}, 204)
+
 # @applet.route('/<complaint_id>', methods=['PUT'])
 # @jwt_required()
 # def edit_complaint():
@@ -32,10 +48,14 @@ def add_complaint():
 @applet.route('/', methods=['GET'])
 @jwt_required()
 def get_all_complaints():
-    try:
+    # try:/
         # role = [r[0] for r in db.session.query(roles_users_table).filter_by(role_id=1).all()]
-        complaints = Complaint.query.limit(10).all()
-        response = jsonify([complaint.to_dict() for complaint in complaints])
-        return response
-    except:
-        return {'message': 'complaints list cannot be fetched'}, 500
+    complaints = Complaint.query.limit(10).all()
+    response = [complaint.to_dict() for complaint in complaints]
+    for complaint in response:
+        likes = Vote.query.filter(Vote.complaint_id == complaint['id']).all()
+        likes = [like.to_dict() for like in likes]
+        complaint['likes'] = likes
+    return jsonify(response), 200
+    # except:
+    #     return {'message': 'complaints list cannot be fetched'}, 500
