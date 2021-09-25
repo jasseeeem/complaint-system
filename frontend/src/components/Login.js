@@ -54,7 +54,7 @@ const useNotification = () => {
   return [Notification, addNotification];
 };
 
-const Login = ({user, setUser}) => {
+const Login = ({user, changeUser}) => {
   const [logging, setLogging] = useState(false);
 
   const [Notification, addNotification] = useNotification();
@@ -73,7 +73,7 @@ const Login = ({user, setUser}) => {
   const [regNoValid, setRegNoValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
 
-  const onSubmit = async (e) => {
+  const onLogin = async (e) => {
     e.preventDefault();
     if (!regNo || !regNoValid) {
       setRegNoValid(false);
@@ -94,7 +94,7 @@ const Login = ({user, setUser}) => {
       // console.log(response)
       const data = await response.json();
       // console.log(data)
-      setUser(data => data);
+      await changeUser(data);
       history.push("/");
     } else addNotification("Invalid reg. no or password", "error");
     setLogging(false);
@@ -106,7 +106,7 @@ const Login = ({user, setUser}) => {
         <></>
       ) : (
         <div className="form-center card">
-          <Form className="login-form" onSubmit={onSubmit}>
+          <Form className="login-form" onSubmit={onLogin}>
             <h2 className="text-center m-4">Log In</h2>
             <FormGroup className="mb-3">
               <Label className="mb-1">Reg. No</Label>

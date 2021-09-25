@@ -15,6 +15,10 @@ function App() {
 
   }
 
+  const changeUser = async(data) => {
+    setUser(data);
+  }
+
   useEffect(() => {
     (async () => {
       let res = await fetch(process.env.REACT_APP_API_URL + "/users/verify", {
@@ -71,14 +75,14 @@ function App() {
             path="/login"
             exact
             render={() => (
-              <Login user={user} setUser={setUser} />
+              <Login user={user} changeUser={changeUser} />
             )}
           />
           <Route
             path="/signup"
             exact
             render={() => (
-              <Signup user={user} setUser={setUser} />
+              <Signup user={user} changeUser={changeUser} />
             )}
           />
         </Switch>

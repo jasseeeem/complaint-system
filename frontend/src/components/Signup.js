@@ -55,7 +55,7 @@ const useNotification = () => {
   return [Notification, addNotification];
 };
 
-const Signup = ({ user, setUser }) => {
+const Signup = ({ user, chagneUser }) => {
 
   const history = useHistory();
 
@@ -127,8 +127,7 @@ const Signup = ({ user, setUser }) => {
     });
     if (response.ok) {
       response = await response.json()
-      console.log(response);
-      setUser(response);
+      await changeUser(response);
       history.push('/');
       return;
     }
