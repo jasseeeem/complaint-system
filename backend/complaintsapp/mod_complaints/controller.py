@@ -11,6 +11,8 @@ def add_complaint():
     content = request.get_json(silent=True)
     title = content['title']
     description = content['description']
+    hostel = content["hostel"]
+    room = content["room"]
     image = content['image']
     user_id = content['user_id']
     # print()
