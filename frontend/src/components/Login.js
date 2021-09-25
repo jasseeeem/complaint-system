@@ -91,11 +91,11 @@ const Login = ({user, setUser}) => {
       body: JSON.stringify({ regno: regNo, password: password }),
     });
     if (response.ok) {
-      console.log(response)
+      // console.log(response)
       const data = await response.json();
       // console.log(data)
       setUser(data => data);
-      // history.push("/");
+      history.push("/");
     } else addNotification("Invalid email or password", "error");
     setLogging(false);
   };

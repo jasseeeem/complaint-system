@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Home = () => {
+const Home = ({user}) => {
     return (
         <div>
-            Home Page
+            Home Page of {user.name}
         </div>
     );
 };

@@ -23,8 +23,8 @@ function App() {
       });
       if (res.ok) {
         res = await res.json();
+        console.log(res)
         setUser(res);
-        console.log(user)
         // res = await fetch(
         //   process.env.REACT_APP_API_URL + "/users/" + res.id + "/notes",
         //   {
@@ -57,13 +57,14 @@ function App() {
 
   return (
     <div className="container">
+      {loading && 
       <BrowserRouter>
         <Switch>
           <Route
             path="/"
             exact
             render={() => (
-              <Home />
+              <Home user={user}/>
             )}
           />
           <Route
@@ -82,6 +83,7 @@ function App() {
           />
         </Switch>
       </BrowserRouter>
+}
     </div>
   );
 }
