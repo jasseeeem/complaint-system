@@ -55,7 +55,7 @@ const useNotification = () => {
   return [Notification, addNotification];
 };
 
-const Signup = ({ user, chagneUser }) => {
+const Signup = ({ user, changeUser }) => {
 
   const history = useHistory();
 
