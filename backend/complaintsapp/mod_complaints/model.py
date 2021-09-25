@@ -34,7 +34,6 @@ class Complaint(db.Model, SerializerMixin):
     description = db.Column(db.String(255), nullable=True)
     image = db.Column(db.String(255), nullable=True)
     user_id = db.Column(db.Integer, ForeignKey('users.id', ondelete='SET NULL'), nullable=True)
-    set_time = db.Column(db.DateTime)
     hostel_id = db.Column(db.Integer, ForeignKey('hostels.id', ondelete='SET NULL'), nullable=True)
     room = db.Column(db.Integer),
     user = relationship('User')

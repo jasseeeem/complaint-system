@@ -107,6 +107,7 @@ const Home = ({user, users}) => {
             
             {user ? 
              <div>
+             
                     <h2>Welcome {user && user.name}</h2>                  
                     <div className="row mb-3">
                    <Button style={{ width: 100 }}
@@ -118,6 +119,8 @@ const Home = ({user, users}) => {
                 </div>
 
                 {loading &&
+                <div className="flex-container1">
+                  <div className="login-block1">
                     <div className="complaints">
                         {complaints.map(complaint => {
                              return (
@@ -135,7 +138,9 @@ const Home = ({user, users}) => {
                                         {userLiked(complaint) ? <AiFillLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} /> : <AiOutlineLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} />}
                                         <span>{complaint.likes.length ? (complaint.likes.length > 1 ? complaint.likes.length + " likes": "1 like") : ""}</span>
                                       </div>
+                                      
                                   </div>
+                                  
                                   <div>
                                       {complaint.image &&
                                         <img
@@ -148,13 +153,17 @@ const Home = ({user, users}) => {
                                         {userLiked(complaint) ? <AiFillLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} /> : <AiOutlineLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} />}
                                         <span>{complaint.likes.length ? (complaint.likes.length > 1 ? complaint.likes.length + " likes": "1 like") : ""}</span>
                                     </div>
-                                  </div>
+                                   </div>
+                                 
                                 </div>
                             )
                         })}
                     </div>
+                   </div>
+                  </div>
                 }
               </div>
+              
             :   
                 <div className="form-centre">
                   <h3>Welcome</h3> 

@@ -64,9 +64,9 @@ const AddComplaint = ({ user }) => {
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [room, setRoom] = useState("")
+    const [room, setRoom] = useState(null)
     const [adding, setAdding] = useState(false);
-    const [hostelType, setHostelType] = useState(1);
+    const [hostelType, setHostelType] = useState(null);
     const [image, setImage] = useState("")
     const [hostelTypes, setHostelTypes] = useState([
         {
@@ -223,6 +223,7 @@ const AddComplaint = ({ user }) => {
                   value={hostelTypes.filter(
                     (option) => option.value === hostelType
                   )}
+                  className="Dropdown"
                   options={hostelTypes}
                   placeholder="Select hostel"
                   isSearchable
