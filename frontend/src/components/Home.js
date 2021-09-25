@@ -1,9 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import {
+  Form,
+  Button,
+  Label,
+  Input,
+  FormGroup,
+  FormFeedback,
+} from "reactstrap";
+
 
 const Home = ({user, users}) => {
+    const history = useHistory();
+
     const [loading, setLoading] = useState(false);
     const [complaints, setComplaints] = useState([]);
+
+    const routeChange = (path) =>{
+      history.push(path)
+    }
 
     useEffect(() => {
         (async () => {
@@ -28,10 +43,10 @@ const Home = ({user, users}) => {
 
     return (
         <div>
-            Home Page of {user && user.name}
-            {user ? 
             
-            <div>
+            {user ? 
+             <div>
+                    Home Page of {user && user.name}                  
                     <div className="row mb-3">
                     <Link
                     to={{
@@ -53,9 +68,23 @@ const Home = ({user, users}) => {
                     </div>
                 }
               </div>
-            :
-                <div>
-
+            :   
+                <div className="form-centre">
+                  Welcome 
+                  <div>
+                   <Button style={{ width: 100 }}
+                           className=" mb-3 btn-md btn-dark btn-block" 
+                           onClick={() => routeChange(`/login`)}>
+                       LOGIN
+                   </Button>
+                  </div> 
+                  <div>
+                   <Button style={{ width: 100 }}
+                           className=" mb-3 btn-md btn-dark btn-block" 
+                           onClick={() => routeChange(`/signup`)}>
+                       SIGNUP
+                   </Button>
+                  </div> 
                 </div>
             }
         </div>

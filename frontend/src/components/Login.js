@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { BrowserRouter, useHistory } from "react-router-dom";
 import {
   Form,
   Button,
@@ -11,6 +11,8 @@ import {
 import "../App.css";
 import { Link } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
+
+
 
 const useNotification = () => {
   const [message, setMessage] = useState(null);
@@ -101,11 +103,11 @@ const Login = ({user, changeUser}) => {
   };
 
   return (
-    <>
-      {user ? (
+      user ? (
         <></>
       ) : (
-        <div className="form-center card">
+        <div className="flex-container">
+        <div className="login-block">
           <Form className="login-form" onSubmit={onLogin}>
             <h2 className="text-center m-4">Log In</h2>
             <FormGroup className="mb-3">
@@ -156,17 +158,16 @@ const Login = ({user, changeUser}) => {
               </Button>{" "}
             </div>
             <div className="text-center">
-              <Link className="text-decoration-none" to="/forgot-password">
-                Forgot Password
-              </Link>
+              
               <div className="mb-2 mt-2">
+              
                 <Notification />
               </div>
             </div>
           </Form>
         </div>
-      )}
-    </>
+        </div>
+      )
   );
 };
 
