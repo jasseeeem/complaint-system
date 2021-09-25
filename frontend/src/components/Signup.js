@@ -69,7 +69,7 @@ const Signup = ({ user, changeUser }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [regNo, setRegNo] = useState("");
-  const [userType, setUserType] = useState(0);
+  const [userType, setUserType] = useState(null);
   const [userTypes, setUserTypes] = useState([
     {
       label: "Warden",
@@ -83,7 +83,9 @@ const Signup = ({ user, changeUser }) => {
       label: "Faculty",
       value: 2,
     }
-  ])
+  ]);
+
+
   const [password, setPassword] = useState("");
   const [repassword, setRepassword] = useState("");
   const [adding, setAdding] = useState(false);

@@ -148,16 +148,16 @@ const Home = ({user, users}) => {
               </div>
             :   
                 <div className="form-centre">
-                  Welcome 
+                  <h3>Welcome</h3> 
                   <div>
-                   <Button style={{ width: 100 }}
+                   <Button style={{ width: 300 }}
                            className=" mb-3 btn-md btn-dark btn-block" 
                            onClick={() => routeChange(`/login`)}>
                        LOGIN
                    </Button>
                   </div> 
                   <div>
-                   <Button style={{ width: 100 }}
+                   <Button style={{ width:300 }}
                            className=" mb-3 btn-md btn-dark btn-block" 
                            onClick={() => routeChange(`/signup`)}>
                        SIGNUP
