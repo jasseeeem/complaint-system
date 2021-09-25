@@ -107,7 +107,7 @@ const Home = ({user, users}) => {
             
             {user ? 
              <div>
-                    Home Page of {user && user.name}                  
+                    <h2>Welcome {user && user.name}</h2>                  
                     <div className="row mb-3">
                    <Button style={{ width: 100 }}
                            className=" mb-3 btn-md btn-dark btn-block" 

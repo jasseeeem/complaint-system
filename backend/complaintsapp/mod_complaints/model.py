@@ -32,7 +32,11 @@ class Complaint(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(255), nullable=True)
+<<<<<<< HEAD
     image = db.Column(db.String(255), nullable=True)
+=======
+    image = db.Column(db.String(100), nullable=True)
+>>>>>>> 5cd37c1533e77b6d33a10d6eaa2cbaea58f377de
     user_id = db.Column(db.Integer, ForeignKey('users.id', ondelete='SET NULL'), nullable=True)
     set_time = db.Column(db.DateTime)
     hostel_id = db.Column(db.Integer, ForeignKey('hostels.id', ondelete='SET NULL'), nullable=True)

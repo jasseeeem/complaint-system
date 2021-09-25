@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS Complaints (
     id SERIAL PRIMARY KEY,
     title VARCHAR(50) NOT NULL,
     description VARCHAR(255),
-    image BYTEA,
+    image VARCHAR(100),
     user_id INT NOT NULL,    --For the user created 
     hostel_id INT NOT NULL,
     room_no INT,
@@ -13,3 +13,5 @@ CREATE TABLE IF NOT EXISTS Complaints (
         REFERENCES users(id) ON DELETE CASCADE 
 );
 
+
+]
