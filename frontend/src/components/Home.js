@@ -46,7 +46,7 @@ const Home = ({user, users}) => {
       }
 
     const likeComplaint = async(complaint_id) => {
-        complaints.map(complaint => {
+        setComplaints(complaints.map(complaint => {
             if(complaint.id === complaint_id) {
                 let likePresent = false;
                 for(let like in complaint.likes) {
@@ -59,9 +59,8 @@ const Home = ({user, users}) => {
                     complaint.likes.push({user_id: user.id})
                 }
             }
-            console.log(complaints)
-        })
-        return;
+            return complaint;
+        }))
         let response = await fetch(process.env.REACT_APP_API_URL + "/complaints/" + complaint_id + "/like/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -71,6 +70,13 @@ const Home = ({user, users}) => {
           });
           console.log(response.ok)
         };
+
+    const userLiked = (complaint) => {
+        for(let like in complaint.likes) {
+            if(complaint.likes[like].user_id === user.id) return true;
+        }
+        return false;
+    }
     
 
     const routeChange = (path) =>{
@@ -116,7 +122,7 @@ const Home = ({user, users}) => {
                         {complaints.map(complaint => {
                              return (
                                 
-                                <div key={complaint.id} className="complaint pt-4 pb-4 me-2 ms-2">
+                                <div key={complaint.id} className="complaint p-3">
                                     <ul class="list-inline">
                                         <li class="list-inline-item"><h5>{complaint.user.name}</h5></li>
                                         <li class="list-inline-item"> • </li>
@@ -124,8 +130,10 @@ const Home = ({user, users}) => {
                                     </ul>
                                     <h4>{complaint.title}</h4>
                                     <p>{complaint.description}</p>
-                                    <AiFillLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} />
-                                    <span>{complaint.likes.length ? (complaint.likes.length > 1 ? complaint.likes.length + " likes": "1 like") : ""}</span>
+                                    <div style={{display: "flex", alignItems: "center"}}>
+                                        {userLiked(complaint) ? <AiFillLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} /> : <AiOutlineLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} />}
+                                        <span>{complaint.likes.length ? (complaint.likes.length > 1 ? complaint.likes.length + " likes": "1 like") : ""}</span>
+                                    </div>
                                 </div>
                             )
                         })}
