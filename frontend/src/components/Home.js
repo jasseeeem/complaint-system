@@ -123,10 +123,10 @@ const Home = ({user, users}) => {
                              return (
                                 
                                 <div key={complaint.id} className="complaint p-3">
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item"><h5>{complaint.user.name}</h5></li>
-                                        <li class="list-inline-item"> • </li>
-                                        <li class="list-inline-item">{timeSince(new Date(complaint.set_time + " UTC"))}</li>
+                                    <ul className="list-inline">
+                                        <li className="list-inline-item"><h5>{complaint.user.name}</h5></li>
+                                        <li className="list-inline-item"> • </li>
+                                        <li className="list-inline-item">{timeSince(new Date(complaint.set_time + " UTC"))}</li>
                                     </ul>
                                     <h4>{complaint.title}</h4>
                                     <p>{complaint.description}</p>

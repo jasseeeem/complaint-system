@@ -6,13 +6,15 @@ from complaintsapp.mod_complaints.model import Complaint, Tag, Vote
 applet = Blueprint('complaints', __name__, url_prefix='/api/complaints')
 
 @applet.route('/', methods=['POST'])
-@jwt_required()
+# @jwt_required()
 def add_complaint():
     content = request.get_json(silent=True)
     title = content['title']
     description = content['description']
     image = content['image']
     user_id = content['user_id']
+    # print()
+    # return {}, 500
     complaint = Complaint(title=title, description=description, image=image, user_id=user_id)
     #print(complaint)
     db.session.add(complaint)
