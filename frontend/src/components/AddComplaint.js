@@ -66,13 +66,8 @@ const AddComplaint = ({ user }) => {
     const [description, setDescription] = useState("");
     const [room, setRoom] = useState("")
     const [adding, setAdding] = useState(false);
-<<<<<<< HEAD
     const [hostelType, setHostelType] = useState(1);
     const [image, setImage] = useState("")
-=======
-    const [hostelType, setHostelType] = useState(0);
-    const [image, setImage] = useState(null)
->>>>>>> 5cd37c1533e77b6d33a10d6eaa2cbaea58f377de
     const [hostelTypes, setHostelTypes] = useState([
         {
           label: "A Hostel",

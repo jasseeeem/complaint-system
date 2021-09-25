@@ -130,6 +130,12 @@ const Home = ({user, users}) => {
                                     </ul>
                                     <h4>{complaint.title}</h4>
                                     <p>{complaint.description}</p>
+                                    {complaint.image &&
+                                      <img 
+                                        src={complaint.image}
+                                        alt={"image for" + complaint.id}
+                                      />
+                                    }
                                     <div style={{display: "flex", alignItems: "center"}}>
                                         {userLiked(complaint) ? <AiFillLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} /> : <AiOutlineLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} />}
                                         <span>{complaint.likes.length ? (complaint.likes.length > 1 ? complaint.likes.length + " likes": "1 like") : ""}</span>
