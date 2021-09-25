@@ -4,16 +4,13 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./components/Login.js";
 import Signup from "./components/Signup.js";
 import Home from "./components/Home.js";
+import AddComplaint from "./components/AddComplaint.js";
 import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
   
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  const onSignup = () => {
-
-  }
 
   const changeUser = async(data) => {
     setUser(data);
@@ -83,6 +80,13 @@ function App() {
             exact
             render={() => (
               <Signup user={user} changeUser={changeUser} />
+            )}
+          />
+          <Route
+            path="/add"
+            exact
+            render={() => (
+              <AddComplaint user={user} />
             )}
           />
         </Switch>
