@@ -35,5 +35,6 @@ class Complaint(db.Model, SerializerMixin):
     image = db.Column(db.String(255), nullable=True)
     user_id = db.Column(db.Integer, ForeignKey('users.id', ondelete='SET NULL'), nullable=True)
     hostel_id = db.Column(db.Integer, ForeignKey('hostels.id', ondelete='SET NULL'), nullable=True)
-    room = db.Column(db.Integer),
+    room_no = db.Column(db.Integer)
+    votes = db.Column(db.Integer)
     user = relationship('User')
