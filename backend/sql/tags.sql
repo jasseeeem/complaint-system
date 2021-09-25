@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS Tags_complaints (
     complaints_id INT NOT NULL,
     PRIMARY KEY(tag_id, complaints_id),
     FOREIGN KEY(tag_id)
-      REFERENCES Tags(id) ON CASCADE DELETE,
+      REFERENCES Tags(id) ON DELETE CASCADE ,
     FOREIGN KEY(complaints_id)
-      REFERENCES Complaints(id) ON CASCADE DELETE
+      REFERENCES Complaints(id) ON DELETE CASCADE 
 );
