@@ -118,11 +118,11 @@ const Home = ({user, users}) => {
                 </div>
 
                 {loading &&
-                    <div complaints>
+                    <div className="complaints">
                         {complaints.map(complaint => {
                              return (
                                 
-                                <div key={complaint.id} className="complaint p-3">
+                                <div key={complaint.id} className="complaint p-3" id="content">
                                     <ul className="list-inline">
                                         <li className="list-inline-item"><h5>{complaint.user.name}</h5></li>
                                         <li className="list-inline-item"> • </li>
