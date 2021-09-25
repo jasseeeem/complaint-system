@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS Complaints (
     user_id INT NOT NULL,    --For the user created 
     hostel_id INT NOT NULL,
     room_no INT,
+    votes INT DEFAULT 0,
     set_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (hostel_id)
        REFERENCES hostels(id) ON DELETE CASCADE, 
@@ -14,4 +15,3 @@ CREATE TABLE IF NOT EXISTS Complaints (
 );
 
 
-]
