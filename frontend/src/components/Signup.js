@@ -142,7 +142,8 @@ const Signup = ({ user, changeUser }) => {
       {user && user.role !== "admin" ? (
         <></>
       ) : (
-        <div className="form-center ">
+        <div className="flex-container">
+          <div className="login-block">
             <Form className="login-form" onSubmit={onSignup}>
             <h2 className="text-center m-4">Sign Up</h2>
               <FormGroup className="mb-3">
@@ -248,7 +249,7 @@ const Signup = ({ user, changeUser }) => {
                 </div>
               </div>
             </Form>
-          </div>
+          </div></div>
       )}
     </>
   );
