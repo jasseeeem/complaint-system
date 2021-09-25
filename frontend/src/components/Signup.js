@@ -140,7 +140,7 @@ const Signup = ({ user, changeUser }) => {
       {user && user.role !== "admin" ? (
         <></>
       ) : (
-        <div className="form-center card">
+        <div className="form-center ">
             <Form className="login-form" onSubmit={onSignup}>
             <h2 className="text-center m-4">Sign Up</h2>
               <FormGroup className="mb-3">
@@ -175,6 +175,7 @@ const Signup = ({ user, changeUser }) => {
               <FormGroup className="mb-3">
                 <Label className="mb-1">User Type</Label>
                 <Select
+                className="Dropdown"
                   value={userTypes.filter(
                     (option) => option.value === userType
                   )}
