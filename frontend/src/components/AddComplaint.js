@@ -136,10 +136,10 @@ const AddComplaint = ({ user }) => {
     const onAdd = async(e) => {
         e.preventDefault();
         setAdding(true)
-        const formData = new FormData();
-        formData.append('image', image, image.name);
         let image_url="";
         if(image) {
+            const formData = new FormData();
+            formData.append('image', image, image.name);
             let response = await fetch("https://api.imgbb.com/1/upload?key=d3f1785c0703d5af9814e48fad503892", {
                 method: "post",
                 body: formData

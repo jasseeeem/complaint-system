@@ -122,24 +122,33 @@ const Home = ({user, users}) => {
                         {complaints.map(complaint => {
                              return (
                                 
-                                <div key={complaint.id} className="complaint p-3" id="content">
-                                    <ul className="list-inline">
+                                <div key={complaint.id} className="complaint p-3">
+                                  <div>
+                                      <ul className="list-inline">
                                         <li className="list-inline-item"><h5>{complaint.user.name}</h5></li>
                                         <li className="list-inline-item"> • </li>
                                         <li className="list-inline-item">{timeSince(new Date(complaint.set_time + " UTC"))}</li>
-                                    </ul>
-                                    <h4>{complaint.title}</h4>
-                                    <p>{complaint.description}</p>
-                                    {complaint.image &&
-                                      <img 
-                                        src={complaint.image}
-                                        alt={"image for" + complaint.id}
-                                      />
-                                    }
-                                    <div style={{display: "flex", alignItems: "center"}}>
+                                      </ul>
+                                      <h4>{complaint.title}</h4>
+                                      <p>{complaint.description}</p>
+                                      <div className="mobile-view">
+                                        {userLiked(complaint) ? <AiFillLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} /> : <AiOutlineLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} />}
+                                        <span>{complaint.likes.length ? (complaint.likes.length > 1 ? complaint.likes.length + " likes": "1 like") : ""}</span>
+                                      </div>
+                                  </div>
+                                  <div>
+                                      {complaint.image &&
+                                        <img
+                                          className="complaint-image" 
+                                          src={complaint.image}
+                                          alt={"image for" + complaint.id}
+                                        />
+                                      }
+                                    <div className="lap-view">
                                         {userLiked(complaint) ? <AiFillLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} /> : <AiOutlineLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} />}
                                         <span>{complaint.likes.length ? (complaint.likes.length > 1 ? complaint.likes.length + " likes": "1 like") : ""}</span>
                                     </div>
+                                  </div>
                                 </div>
                             )
                         })}
