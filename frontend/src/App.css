@@ -5,14 +5,15 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  color: aliceblue;
+}
+
+.Dropdown {
+  color: black;
 }
 
 html {
   height: 100%;
-}
-
-h2{
-  color:rgb(236, 246, 255);
 }
 #complaint_button{
 width: max-content;
@@ -86,7 +87,6 @@ Button{
 }
 
 .welcome{
-  color: aliceblue;
   align-items: center;
   justify-content: center;
   padding-left: 25%;
@@ -98,23 +98,20 @@ Button{
   width: 100%;
   max-width: 330px;
   padding: 15px;
-  color: aliceblue;
   margin: auto;
   height: 100%;
 }
 
+/* .complaints {
+  min-width: 100%;
+} */
 .complaint {
-  color: white;
   border-bottom: 2px solid white;
   /* background-color: ligh; */
 }
 
 .first-line {
   display: inline-block
-}
-
-h3{
-  color:rgb(236, 246, 255);
 }
 
 .complaint {
@@ -127,6 +124,15 @@ h3{
 }
 .complaint-image {
   max-height: 150px;
+}
+.sort {
+  display: flex;
+  justify-content: stretch;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  /* margin-top: 15px; */
 }
 
 
@@ -141,9 +147,18 @@ h3{
     flex-direction: column;
   }
   .complaint-image {
-    /* min-width: 100%; */
     max-width: 100%;
     max-height: 100%;
     margin-bottom: 10px;
+  }
+  .sort {
+
+  }
+  .top {
+    flex-direction: column;
+    margin-top: 30px;
+  }
+  .post-button {
+    width: 100%;
   }
 }

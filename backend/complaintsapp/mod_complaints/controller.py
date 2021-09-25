@@ -49,12 +49,23 @@ def like_complaint(complaint_id):
 # @jwt_required()
 # def delete_complaint():
 
-@applet.route('/', methods=['GET'])
+@applet.route('/sort/<sort_type>', methods=['GET'])
 @jwt_required()
-def get_all_complaints():
-    # try:/
-        # role = [r[0] for r in db.session.query(roles_users_table).filter_by(role_id=1).all()]
-    complaints = Complaint.query.limit(10).all()
+def get_all_complaints(sort_type):
+    try:
+        sort_type = int(sort_type)
+    except:
+        return {'message': 'wrong endpoint'} , 404
+    complaints = None
+    if sort_type == 0:
+        complaints = Complaint.query.order_by(Complaint.set_time.desc()).limit(10).all()
+    elif sort_type == 1:
+        complaints = Complaint.query.limit(10).all()
+    elif sort_type == 2:
+        pass
+    elif sort_type == 3:
+        pass
+        
     response = [complaint.to_dict() for complaint in complaints]
     for complaint in response:
         likes = Vote.query.filter(Vote.complaint_id == complaint['id']).all()

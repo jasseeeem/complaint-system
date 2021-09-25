@@ -8,13 +8,34 @@ import {
   FormGroup,
   FormFeedback,
 } from "reactstrap";
+import Select from "react-select";
 import { AiFillLike, AiOutlineLike } from 'react-icons/ai'
+import { BeatLoader } from "react-spinners";
 
 const Home = ({user, users}) => {
     const history = useHistory();
-
+    const [complaintsLoading, setComplaintsLoading] = useState(false);
     const [loading, setLoading] = useState(false);
     const [complaints, setComplaints] = useState([]);
+    const [sortType, setSortType] = useState(1)
+    const [sortTypes, setSortTypes] = useState([
+      {
+        'label': "Date Added (Latest to Oldest)",
+        'value': 1
+      },
+      {
+        'label': "Date Added (Oldest to Latest)",
+        'value': 2
+      },
+      {
+        'label': "Likes (Highest to lowest)",
+        'value': 3
+      },
+      {
+        'label': "Likes (Lowest to Highest)",
+        'value': 4
+      },
+    ]);
     
     const addArray = async (arr) => {
         setComplaints(arr);
@@ -83,10 +104,27 @@ const Home = ({user, users}) => {
       history.push(path)
     }
 
+    const updateComplaints = async(sorttype) => {
+      setComplaintsLoading(true);
+      let response = await fetch(process.env.REACT_APP_API_URL + "/complaints/sort/"+sorttype+"/", {
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+      if (response.ok) {
+        setComplaints([]);
+        response = await response.json();
+        const peopleArray = Object.keys(response).map(i => response[i])
+        await addArray(peopleArray);
+        setComplaintsLoading(true);
+      } else {
+        setComplaints([]);
+      };
+    }
+
     useEffect(() => {
         (async () => {
-            setLoading(false);
-            let res = await fetch(process.env.REACT_APP_API_URL + "/complaints/", {
+            setComplaintsLoading(false);
+            let res = await fetch(process.env.REACT_APP_API_URL + "/complaints/sort/0/", {
               headers: { "Content-Type": "application/json" },
               credentials: "include",
             });
@@ -95,7 +133,8 @@ const Home = ({user, users}) => {
               res = await res.json();
               const peopleArray = Object.keys(res).map(i => res[i])
               await addArray(peopleArray);
-              setLoading(true);
+              setComplaintsLoading(true);
+              console.log(complaints)
             } else {
               setComplaints([]);
             };
@@ -107,17 +146,34 @@ const Home = ({user, users}) => {
             
             {user ? 
              <div>
-                    <h2>Welcome {user && user.name}</h2>                  
-                    <div className="row mb-3">
-                   <Button style={{ width: 100 }}
-                           className=" mb-3 btn-md btn-dark btn-block" 
-                           id = "complaint_button"
-                           onClick={() => routeChange(`/add`)}>
-                       POST COMPLAINT
+                    {/* <h2>Welcome {user && user.name}</h2>                   */}
+                <div className="top">
+                  <div className="sort">
+                    <h5 className="me-3 pt-2">Sort by: </h5>
+                    <Select
+                    className="Dropdown"
+                      value={sortTypes.filter(
+                        (option) => option.value === sortType
+                      )}
+                      options={sortTypes}
+                      onChange={(e) => {
+                        setSortType(e.value);
+                        setComplaintsLoading(true);
+                        updateComplaints(e.value);
+                      }}
+                      noOptionsMessage={() => "User type doesn't exist"}
+                    />
+                  </div>
+                  <div>
+                    <Button
+                      className="mb-3 btn-md btn-dark post-button" 
+                      onClick={() => routeChange(`/add`)}>
+                      POST COMPLAINT
                    </Button>
+                  </div>
                 </div>
 
-                {loading &&
+                {complaintsLoading ?
                     <div className="complaints">
                         {complaints.map(complaint => {
                              return (
@@ -153,14 +209,18 @@ const Home = ({user, users}) => {
                             )
                         })}
                     </div>
+                :
+                  <div className="container text-center mt-5">
+                    <BeatLoader loading />
+                  </div>
                 }
               </div>
             :   
-                <div className="form-centre">
+                <div className="form-center">
                   <h3>Welcome</h3> 
                   <div>
                    <Button style={{ width: 300 }}
-                           className=" mb-3 btn-md btn-dark btn-block" 
+                           className="mb-3 btn-md btn-dark btn-block" 
                            onClick={() => routeChange(`/login`)}>
                        LOGIN
                    </Button>
