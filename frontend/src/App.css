@@ -27,7 +27,7 @@ min-width: 70vw;
 body {
   /* height: 100vh; */
   /* width: 100%; */
-  overflow: hidden;
+  
   height: 100%;
   background-repeat: no-repeat;
   background-image: linear-gradient(to top right, #000428 15%, #04559c 100%);
