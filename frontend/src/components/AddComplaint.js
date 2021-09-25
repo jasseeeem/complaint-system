@@ -117,7 +117,6 @@ const AddComplaint = ({ user }) => {
         };
 
     useEffect(() => {
-        console.log(user)
         if (!user) {
             history.push("/login");
             return;

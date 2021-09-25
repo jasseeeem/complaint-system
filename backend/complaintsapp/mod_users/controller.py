@@ -111,7 +111,7 @@ def delete_user_details(user_id):
 
 @applet.route('/', methods=['GET'])
 @jwt_required()
-def get_all_collectors():
+def get_all_users():
     try:
         # role = [r[0] for r in db.session.query(roles_users_table).filter_by(role_id=1).all()]
         users = User.query.all()

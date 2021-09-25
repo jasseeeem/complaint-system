@@ -14,6 +14,7 @@ def add_complaint():
     image = content['image']
     user_id = content['user_id']
     complaint = Complaint(title=title, description=description, image=image, user_id=user_id)
+    print(complaint)
     db.session.add(complaint)
     db.session.commit()
     db.session.remove()
@@ -30,7 +31,7 @@ def add_complaint():
 
 @applet.route('/', methods=['GET'])
 @jwt_required()
-def get_all_collectors():
+def get_all_complaints():
     try:
         # role = [r[0] for r in db.session.query(roles_users_table).filter_by(role_id=1).all()]
         complaints = Complaint.query.limit(10).all()

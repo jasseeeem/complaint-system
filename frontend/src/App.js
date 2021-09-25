@@ -10,47 +10,38 @@ import "bootstrap/dist/css/bootstrap.css";
 function App() {
   
   const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
-
   const changeUser = async(data) => {
     setUser(data);
   }
 
   useEffect(() => {
     (async () => {
-      let res = await fetch(process.env.REACT_APP_API_URL + "/users/verify", {
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-      });
-      if (res.ok) {
-        res = await res.json();
-        console.log(res)
-        setUser(res);
-        // res = await fetch(
-        //   process.env.REACT_APP_API_URL + "/users/" + res.id + "/notes",
-        //   {
-        //     headers: { "Content-Type": "application/json" },
-        //     credentials: "include",
-        //   }
-        // );
-        // if (res.ok) {
-        //   res = await res.json();
-        //   res.map((obj) => {
-        //     notes.push({
-        //       server_id: obj[0],
-        //       client_id: uuid(),
-        //       user_id: obj[1],
-        //       title: obj[2],
-        //       note: obj[3],
-        //       last_edited: obj[4],
-        //       tags: obj[5],
-        //     });
-          // });
-        // } else {
-          // setNotes([]);
-        // }
+      let [userVerifyResponse, usersResponse] =
+          await Promise.all([
+            fetch(process.env.REACT_APP_API_URL + "/users/verify/", {
+              headers: { "Content-Type": "application/json" },
+              credentials: "include",
+            }),
+            fetch(process.env.REACT_APP_API_URL + "/users/", {
+              headers: { "Content-Type": "application/json" },
+              credentials: "include",
+            })
+          ]);
+      userVerifyResponse = await userVerifyResponse.json()
+      usersResponse = await usersResponse.json()
+
+      if (userVerifyResponse.ok) {
+        setUser(userVerifyResponse);
       } else {
         setUser(null);
+      }
+      if (userVerifyResponse.ok) {
+        console.log(userVerifyResponse)
+        // setUsers(userVerifyResponse);
+      } else {
+        setUsers([]);
       }
       setLoading(true);
     })();
@@ -65,7 +56,7 @@ function App() {
             path="/"
             exact
             render={() => (
-              <Home user={user}/>
+              <Home user={user} users={users} />
             )}
           />
           <Route
