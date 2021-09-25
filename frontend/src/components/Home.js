@@ -1,9 +1,4 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
-import { AiFillLike } from "react-icons/ai";
-import { BiLike } from "react-icons/bi";
-=======
 import { Link, useHistory } from "react-router-dom";
 import {
   Form,
@@ -13,8 +8,7 @@ import {
   FormGroup,
   FormFeedback,
 } from "reactstrap";
-
->>>>>>> eac5e4ccab26fdeaa50af96343a7f4089535e0ba
+import { AiFillLike, AiOutlineLike } from 'react-icons/ai'
 
 const Home = ({user, users}) => {
     const history = useHistory();
@@ -23,7 +17,6 @@ const Home = ({user, users}) => {
     const [complaints, setComplaints] = useState([]);
     
     const addArray = async (arr) => {
-        console.log(arr)
         setComplaints(arr);
     }
 
@@ -39,20 +32,36 @@ const Home = ({user, users}) => {
         }
         interval = seconds / 86400;
         if (interval > 1) {
-          return Math.floor(interval) + " days";
+          return Math.floor(interval) + "d";
         }
         interval = seconds / 3600;
         if (interval > 1) {
-          return Math.floor(interval) + " hours";
+          return Math.floor(interval) + "h";
         }
         interval = seconds / 60;
         if (interval > 1) {
-          return Math.floor(interval) + " minutes";
+          return Math.floor(interval) + "m";
         }
-        return Math.floor(seconds) + " seconds";
+        return Math.floor(seconds) + "s";
       }
 
     const likeComplaint = async(complaint_id) => {
+        complaints.map(complaint => {
+            if(complaint.id === complaint_id) {
+                let likePresent = false;
+                for(let like in complaint.likes) {
+                    if(complaint.likes[like].user_id === user.id) {
+                        complaint.likes.splice(like, 1);
+                        likePresent = true;
+                    }
+                }
+                if(!likePresent) {
+                    complaint.likes.push({user_id: user.id})
+                }
+            }
+            console.log(complaints)
+        })
+        return;
         let response = await fetch(process.env.REACT_APP_API_URL + "/complaints/" + complaint_id + "/like/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -110,12 +119,15 @@ const Home = ({user, users}) => {
                         {complaints.map(complaint => {
                              return (
                                 
-                                <div key={complaint.id} className="complaint card p-2 mb-3 me-2 ms-2">
-                                    <h5>{complaint.user.name}</h5>
-                                    <h6>{timeSince(new Date(complaint.set_time + " UTC"))} ago</h6>
-                                    <h5>{complaint.title}</h5>
-                                    <h6>{complaint.description}</h6>
-                                    <AiFillLike size="25" onClick={() => likeComplaint(complaint.id)} />
+                                <div key={complaint.id} className="complaint pt-4 pb-4 me-2 ms-2">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item"><h5>{complaint.user.name}</h5></li>
+                                        <li class="list-inline-item"> • </li>
+                                        <li class="list-inline-item">{timeSince(new Date(complaint.set_time + " UTC"))}</li>
+                                    </ul>
+                                    <h4>{complaint.title}</h4>
+                                    <p>{complaint.description}</p>
+                                    <AiFillLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} />
                                     <span>{complaint.likes.length ? (complaint.likes.length > 1 ? complaint.likes.length + " likes": "1 like") : ""}</span>
                                 </div>
                             )
