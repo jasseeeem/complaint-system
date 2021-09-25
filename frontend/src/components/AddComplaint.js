@@ -67,7 +67,7 @@ const AddComplaint = ({ user }) => {
     const [room, setRoom] = useState("")
     const [adding, setAdding] = useState(false);
     const [hostelType, setHostelType] = useState(0);
-    const [image, setImage] = useState("")
+    const [image, setImage] = useState(null)
     const [hostelTypes, setHostelTypes] = useState([
         {
           label: "A Hostel",
@@ -108,6 +108,7 @@ const AddComplaint = ({ user }) => {
               image: image,
             }),
           });
+          //console.log(image);
           if (response.ok) {
             history.push('/');
             return;
