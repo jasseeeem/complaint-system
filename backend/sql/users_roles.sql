@@ -3,9 +3,9 @@ CREATE TABLE IF NOT EXISTS Users_roles (
     role_id INT NOT NULL,
     PRIMARY KEY (user_id, role_id),
     FOREIGN KEY(user_id)
-        REFERENCES users(id),
+        REFERENCES users(id)  ON CASCADE DELETE,
     FOREIGN KEY(role_id)
-        REFERENCES roles(id)
+        REFERENCES roles(id) ON CASCADE DELETE
 );
 
 INSERT INTO User_roles(user_id, roles_id) VALUES (1,2);

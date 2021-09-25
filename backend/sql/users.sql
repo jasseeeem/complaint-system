@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS Users (
     password VARCHAR(60) NOT NULL
 );
 
-INSERT INTO Users(name,rollNo,password) VALUES ('jaseem','B190768CS','XAE11C');
-INSERT INTO Users(name,rollNo,password) VALUES ('akshay','B190748CS','23E11C');
-INSERT INTO Users(name,rollNo,password) VALUES ('varghese','B190708CS','23E43C');
-INSERT INTO Users(name,rollNo,password) VALUES ('Sanjay','M120781MA','23ETYC');
+INSERT INTO Users(name,regNo,password) VALUES ('jaseem','B190768CS','XAE11C');
+INSERT INTO Users(name,regNo,password) VALUES ('akshay','B190748CS','23E11C');
+INSERT INTO Users(name,regNo,password) VALUES ('varghese','B190708CS','23E43C');
+INSERT INTO Users(name,regNo,password) VALUES ('Sanjay','M120781MA','23ETYC');
