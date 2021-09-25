@@ -103,15 +103,12 @@ const Home = ({user, users}) => {
              <div>
                     Home Page of {user && user.name}                  
                     <div className="row mb-3">
-                    <Link
-                    to={{
-                        pathname: "/add",
-                    }}
-                    style={{ textDecoration: "none" }}
-                    className="text-center"
-                    >
-                    Post Complaint
-                    </Link>
+                   <Button style={{ width: 100 }}
+                           className=" mb-3 btn-md btn-dark btn-block" 
+                           id = "complaint_button"
+                           onClick={() => routeChange(`/add`)}>
+                       POST COMPLAINT
+                   </Button>
                 </div>
 
                 {loading &&

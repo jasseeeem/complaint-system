@@ -11,6 +11,16 @@ html {
   height: 100%;
 }
 
+#complaint_button{
+width: max-content;
+padding: 9px;
+font-size: 1.7rem;
+display: flex;
+align-items: center;
+justify-content: center;
+min-width: 70vw;
+}
+
 body {
   /* height: 100vh; */
   /* width: 100%; */
