@@ -7,6 +7,19 @@
   font-family: 'Poppins', sans-serif;
 }
 
+body {
+  /* height: 100vh; */
+  /* width: 100%; */
+}
+
+.form-center {
+  min-height: 100vh;
+}
+
+/* Form {
+  border: 2px solid black;
+} */
+
 .login-form {
   width: 100%;
   max-width: 330px;

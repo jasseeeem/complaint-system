@@ -141,9 +141,9 @@ const Signup = ({ user, setUser }) => {
       {user && user.role !== "admin" ? (
         <></>
       ) : (
-        <div className="container">
-          <div className="card">
+        <div className="form-center card">
             <Form className="login-form" onSubmit={onSignup}>
+            <h2 className="text-center m-4">Sign Up</h2>
               <FormGroup className="mb-3">
                 <Label className="mb-1">Full Name</Label>
                 <Input
@@ -173,14 +173,13 @@ const Signup = ({ user, setUser }) => {
                 ></Input>
                 <FormFeedback invalid>Please enter a valid Roll Number</FormFeedback>
               </FormGroup>
-              <FormGroup>
-              <Label className="mb-1">User Type</Label>
+              <FormGroup className="mb-3">
+                <Label className="mb-1">User Type</Label>
                 <Select
                   value={userTypes.filter(
                     (option) => option.value === userType
                   )}
                   options={userTypes}
-                  className="mb-4"
                   placeholder="Select user type"
                   isSearchable
                   onChange={(e) => setUserType(e.value)}
@@ -226,7 +225,7 @@ const Signup = ({ user, setUser }) => {
                 <Button
                   type="submit"
                   style={{ width: 150 }}
-                  className=" mb-3 btn-md btn-dark btn-block"
+                  className=" m-3 btn-md btn-dark btn-block"
                 >
                   {adding ? (
                     <Spinner
@@ -237,7 +236,7 @@ const Signup = ({ user, setUser }) => {
                       aria-hidden="true"
                     />
                   ) : (
-                    "Add"
+                    "Sign Up"
                   )}
                 </Button>
               </div>
@@ -248,7 +247,6 @@ const Signup = ({ user, setUser }) => {
               </div>
             </Form>
           </div>
-        </div>
       )}
     </>
   );

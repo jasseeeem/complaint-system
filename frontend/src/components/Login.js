@@ -105,9 +105,9 @@ const Login = ({user, setUser}) => {
       {user ? (
         <></>
       ) : (
-        <div className="container card">
+        <div className="form-center card">
           <Form className="login-form" onSubmit={onSubmit}>
-            <h1 className="mb-4 text-center">Login</h1>
+            <h2 className="text-center m-4">Log In</h2>
             <FormGroup className="mb-3">
               <Label className="mb-1">Reg. No</Label>
               <Input
