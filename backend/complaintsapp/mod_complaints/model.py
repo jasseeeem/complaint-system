@@ -1,5 +1,6 @@
 from sqlalchemy.orm.relationships import foreign
 from complaintsapp import db
+from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship, Session
 from sqlalchemy_serializer import SerializerMixin
 
