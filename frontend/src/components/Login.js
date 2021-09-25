@@ -61,21 +61,22 @@ const Login = ({user, setUser}) => {
 
   const history = useHistory();
   useEffect(() => {
+    console.log(user)
     if (user) {
       history.push("/");
       return;
     }
   }, []);
 
-  const [email, setEmail] = useState("");
+  const [regNo, setRegNo] = useState("");
   const [password, setPassword] = useState("");
-  const [emailValid, setEmailValid] = useState(true);
+  const [regNoValid, setRegNoValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (!email || !emailValid) {
-      setEmailValid(false);
+    if (!regNo || !regNoValid) {
+      setRegNoValid(false);
       return;
     }
     if (!password || !passwordValid) {
@@ -83,15 +84,16 @@ const Login = ({user, setUser}) => {
       return;
     }
     setLogging(true);
-    let response = await fetch("/api/users/login", {
+    let response = await fetch(process.env.REACT_APP_API_URL + "/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ email: email, password: password }),
+      body: JSON.stringify({ regno: regNo, password: password }),
     });
     if (response.ok) {
       const data = await response.json();
-      setUser(data);
+      console.log(data)
+      setUser(data => data);
       history.push("/");
     } else addNotification("Invalid email or password", "error");
     setLogging(false);
@@ -106,18 +108,18 @@ const Login = ({user, setUser}) => {
           <Form className="login-form" onSubmit={onSubmit}>
             <h1 className="mb-4 text-center">Login</h1>
             <FormGroup className="mb-3">
-              <Label className="mb-1">Email ID</Label>
+              <Label className="mb-1">Reg. No</Label>
               <Input
-                // type="email"
-                value={email}
-                placeholder="Email ID"
+                type="text"
+                value={regNo}
+                placeholder="Reg. No"
                 onChange={(e) => {
-                  setEmail(e.target.value);
-                  setEmailValid(e.target.value !== "");
+                  setRegNo(e.target.value);
+                  setRegNoValid(/^[A-Z]+[0-9]+[A-Z]+$/.test(e.target.value));
                 }}
-                invalid={emailValid === false}
+                invalid={regNoValid === false}
               ></Input>
-              <FormFeedback invalid>Please enter a valid Email ID</FormFeedback>
+              <FormFeedback invalid>Please enter a valid Reg. No</FormFeedback>
             </FormGroup>
             <FormGroup className="mb-3">
               <Label className="mb-1">Password</Label>

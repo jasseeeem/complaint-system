@@ -21,6 +21,6 @@ class User(db.Model, SerializerMixin):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
-    rollNo = db.Column(db.String(50), unique=True, nullable=False)
-    password = db.Column(db.String(), nullable=False)
+    regno = db.Column(db.String(50), unique=True, nullable=False)
+    password = db.Column(db.String(60), nullable=False)
     roles = relationship('Role', secondary=roles_users_table)

@@ -24,6 +24,7 @@ function App() {
       if (res.ok) {
         res = await res.json();
         setUser(res);
+        console.log(user)
         // res = await fetch(
         //   process.env.REACT_APP_API_URL + "/users/" + res.id + "/notes",
         //   {
@@ -43,9 +44,9 @@ function App() {
         //       last_edited: obj[4],
         //       tags: obj[5],
         //     });
-        //   });
+          // });
         // } else {
-        //   setNotes([]);
+          // setNotes([]);
         // }
       } else {
         setUser(null);
@@ -69,7 +70,7 @@ function App() {
             path="/login"
             exact
             render={() => (
-              <Login />
+              <Login user={user} setUser={setUser} />
             )}
           />
           <Route

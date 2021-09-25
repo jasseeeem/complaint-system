@@ -21,6 +21,8 @@ def create_app():
         r"\/api\/.*": api_cors_config
     })
 
+    app.config['CORS_ALLOW_CREDENTIALS'] = True
+    app.config['JWT_SESSION_COOKIE'] = True
     app.config['JWT_TOKEN_LOCATION'] = ['cookies']
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=10000)
     # app.config['JWT_COOKIE_CSRF_PROTECT'] = True

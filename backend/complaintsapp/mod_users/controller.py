@@ -40,12 +40,12 @@ def refresh_expiring_jwts(response):
 @applet.route('/verify', methods=['GET'])
 @jwt_required()
 def user_verify():
-    regNo = get_jwt_identity()
-    user = User.query.filter_by(regNo=regNo).first()
+    regno = get_jwt_identity()
+    user = User.query.filter_by(regno=regno).first()
     if(user):
         role = db.session.query(roles_users_table).join(Role).filter(roles_users_table.c.user_id==user.id and roles_users_table.c.role_id == Role.id).all()
         role = Role.query.filter_by(id=role[0][1]).first()
-        return {'id': user.id, 'name': user.name, 'regNo': user.regNo, 'role': role.name}, 200
+        return {'id': user.id, 'name': user.name, 'regno': user.regno, 'role': role.name}, 200
     return {'message': 'fail'}, 404
 
 
@@ -143,27 +143,27 @@ def logout():
 
 
 @applet.route('/signup', methods=['POST'])
-@jwt_required()
+# @jwt_required()
 # @expects_json(user_schema, force=True)
 def signup():
     content = request.get_json(silent=True)
     name = content['name']
-    regNo = content['regNo']
+    regno = content['regno']
     role = content['userType']
-    password = bcrypt.generate_password_hash(content['password']).decode('utf-8')
-    if User.query.filter_by(regNo=regNo).first():
+    password = bcrypt.generate_password_hash(content['password']).decode('utf-8', "ignore")
+    if User.query.filter_by(regno=regno).first():
         db.session.remove()
         return {'message': 'User exists'}, 409
     role = db.session.query(Role).filter_by(name=role).first()
-    user = User(name=name, regNo=regNo, password=password)
+    user = User(name=name, regno=regno, password=password)
     user.roles.append(role)
     db.session.add(user)
     db.session.commit()
     role = db.session.query(roles_users_table).join(Role).filter(roles_users_table.c.user_id == user.id and roles_users_table.c.role_id == Role.id).all()
     role = Role.query.filter_by(id=role[0][1]).first()
     db.session.remove()
-    response = jsonify({'id': user.id, 'name': user.name, 'regNo': user.regNo, 'role': role.name})
-    access_token = create_access_token(identity=regNo)
+    response = jsonify({'id': user.id, 'name': user.name, 'regno': user.regno, 'role': role.name})
+    access_token = create_access_token(identity=regno)
     set_access_cookies(response, access_token)
     return response
 
@@ -171,17 +171,17 @@ def signup():
 @applet.route('/login', methods=['POST'])
 def login():
     content = request.get_json()
-    regNo = content['regNo']
+    regno = content['regno']
     password = content['password']
-    if regNo:
-        user = User.query.filter_by(regNo=regNo).first()
-        if user and user.active and bcrypt.check_password_hash(user.password, password):
+    if regno:
+        user = User.query.filter_by(regno=regno).first()
+        if user and bcrypt.check_password_hash(user.password, password):
             role = db.session.query(roles_users_table).join(Role).filter(roles_users_table.c.user_id==user.id and roles_users_table.c.role_id == Role.id).all()
             role = Role.query.filter_by(id=role[0][1]).first()
             db.session.remove()
             response = jsonify(
-                {'id': user.id, 'name': user.name, 'regNo': user.regNo, 'role': role.name})
-            access_token = create_access_token(identity=regNo)
+                {'id': user.id, 'name': user.name, 'regno': user.regno, 'role': role.name})
+            access_token = create_access_token(identity=regno)
             set_access_cookies(response, access_token)
             return response
     return {'message': 'Invalid email or password'}, 401

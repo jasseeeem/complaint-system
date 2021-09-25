@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS Users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     regNo VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(50) NOT NULL
+    password VARCHAR(60) NOT NULL
 );
 
 INSERT INTO Users(name,rollNo,password) VALUES ('jaseem','B190768CS','XAE11C');

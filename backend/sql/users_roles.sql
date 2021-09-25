@@ -1,10 +1,10 @@
-CREATE TABLE IF NOT EXISTS User_roles (
+CREATE TABLE IF NOT EXISTS Users_roles (
     user_id INT NOT NULL,
-    roles_id INT NOT NULL,
-    PRIMARY KEY (user_id, roles_id),
+    role_id INT NOT NULL,
+    PRIMARY KEY (user_id, role_id),
     FOREIGN KEY(user_id)
         REFERENCES users(id),
-    FOREIGN KEY(roles_id)
+    FOREIGN KEY(role_id)
         REFERENCES roles(id)
 );
 

@@ -115,13 +115,13 @@ const Signup = ({ user, setUser }) => {
       return;
     }
     setAdding(true);
-    let response = await fetch(process.env.REACT_API_URL + "/users/signup", {
+    let response = await fetch(process.env.REACT_APP_API_URL + "/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: name,
         regno: regNo,
-        userType: userType,
+        userType: userTypes.filter(x => x.value === 0)[0].label.toLowerCase(),
         password: password,
       }),
     });
