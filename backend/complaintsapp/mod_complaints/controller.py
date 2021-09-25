@@ -13,9 +13,9 @@ def add_complaint():
     description = content['description']
     image = content['image']
     user_id = content['user_id']
-    # print()
-    # return {}, 500
-    complaint = Complaint(title=title, description=description, image=image, user_id=user_id)
+    hostel = content['hostel']
+    room = content['room']
+    complaint = Complaint(title=title, description=description, image=image, user_id=user_id, room=room, hostel_id=hostel)
     #print(complaint)
     db.session.add(complaint)
     db.session.commit()

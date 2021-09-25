@@ -66,39 +66,89 @@ const AddComplaint = ({ user }) => {
     const [description, setDescription] = useState("");
     const [room, setRoom] = useState("")
     const [adding, setAdding] = useState(false);
-    const [hostelType, setHostelType] = useState(0);
+    const [hostelType, setHostelType] = useState(1);
     const [image, setImage] = useState("")
     const [hostelTypes, setHostelTypes] = useState([
         {
           label: "A Hostel",
-          value: 0,
-        },
-        {
-          label: "B Hostel",
           value: 1,
         },
         {
-          label: "C Hostel",
+          label: "B Hostel",
           value: 2,
         },
         {
+          label: "C Hostel",
+          value: 3,
+        },
+        {
             label: "D Hostel",
-            value: 3,
-          },
-          {
-            label: "E Hostel",
             value: 4,
           },
           {
-            label: "F Hostel",
+            label: "E Hostel",
             value: 5,
-          }
+          },
+          {
+            label: "F Hostel",
+            value: 6,
+          },
+          {
+            label: "G Hostel",
+            value: 7,
+          },
+          {
+            label: "Mega Hostel",
+            value: 8,
+          },
+          {
+            label: "PG1 Hostel",
+            value: 9,
+          },
+          {
+              label: "PG2 Hostel",
+              value: 10,
+            },
+            {
+              label: "INH Hostel",
+              value: 11,
+            },
+            {
+              label: "MBA Hostel",
+              value: 12,
+            },
+            {
+              label: "IDM Hostel",
+              value: 13,
+            },
+            {
+              label: "LH Hostel",
+              value: 14,
+            }
+
       ])
+
+      function getBase64Image(image){     
+        var dataURL = image.toDataURL("image/png");
+        return dataURL;
+    } 
+
     const onAdd = async(e) => {
         e.preventDefault();
         setAdding(true)
-        const fd = new FormData();
-        fd.append('image', image, image.name);
+        const formData = new FormData();
+        formData.append('image', image, image.name);
+        let image_url="";
+        if(image) {
+            let response = await fetch("https://api.imgbb.com/1/upload?key=d3f1785c0703d5af9814e48fad503892", {
+                method: "post",
+                body: formData
+            })
+            if(response.ok) {
+                response = await response.json();
+                image_url = response.data.display_url;
+            }
+        }
         let response = await fetch(process.env.REACT_APP_API_URL + "/complaints/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -107,7 +157,7 @@ const AddComplaint = ({ user }) => {
               description: description,
               hostel: hostelType,
               room: room,
-              image: fd,
+              image: image_url,
               user_id: user.id
             }),
           });
