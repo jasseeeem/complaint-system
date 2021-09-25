@@ -154,7 +154,7 @@ const AddComplaint = ({ user }) => {
               <FormGroup className="mb-3">
                 <Input
                     type="file"
-                    accept="image/*"
+                    accept="image/png, image/jpg, image/jpeg"
                     onChange={(e) => setImage(e.target.files[0])}
                 />
               </FormGroup>

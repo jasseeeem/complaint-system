@@ -1,9 +1,4 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
-import { AiFillLike } from "react-icons/ai";
-import { BiLike } from "react-icons/bi";
-=======
 import { Link, useHistory } from "react-router-dom";
 import {
   Form,
@@ -13,8 +8,8 @@ import {
   FormGroup,
   FormFeedback,
 } from "reactstrap";
+import { AiFillLike } from 'react-icons/ai'
 
->>>>>>> eac5e4ccab26fdeaa50af96343a7f4089535e0ba
 
 const Home = ({user, users}) => {
     const history = useHistory();
