@@ -55,9 +55,16 @@ body {
 padding: 9px;
 font-size: 1.7rem;
 display: flex;
+flex-direction: column;
 align-items: center;
 justify-content: center;
 min-width: 70vw;
+}
+.half {
+  max-width: 600px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
 }
 .container {
   min-height: 100vh;
@@ -125,13 +132,22 @@ Button{
 .first-line {
   display: inline-block
 }
+#big-text {
+  margin-bottom: 30px;
+}
+#home-img {
+  position: relative;
+  width: 500px;
+  height: auto;
+  clip: rect(0px, 60px, 200px, 0px);
+}
 h3{
   color:rgb(236, 246, 255);
 }
 .complaint {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  flex-direction: row;
 }
 .lap-view {
   display: none;
@@ -160,8 +176,23 @@ h3{
 #title {
   margin-bottom: 7px;
 }
+#navbar {
+  height: 30px;
+  max-height: 30px;
+  /* position:fixed;
+    top:0;
+    width:100%;
+    z-index:100; */
+}
+.main {
+  display: flex;
+  flex-direction: column;
+}
 
 @media (max-width: 480px) {
+  .half {
+    max-width: 350px;
+  }
   .mobile-view {
     display: none;
   }

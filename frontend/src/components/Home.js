@@ -145,7 +145,6 @@ const Home = ({user, users, hostelTypes}) => {
               const peopleArray = Object.keys(res).map(i => res[i])
               await addArray(peopleArray);
               setComplaintsLoading(true);
-              console.log(complaints)
             } else {
               setComplaints([]);
             };
@@ -177,7 +176,7 @@ const Home = ({user, users, hostelTypes}) => {
                   </div>
                   <div>
                     <Button
-                      className="mb-3 btn-md btn-dark post-button" 
+                      className="mb-3 btn-md btn-light post-button" 
                       onClick={() => routeChange(`/add`)}>
                       POST COMPLAINT
                       </Button>
@@ -190,7 +189,7 @@ const Home = ({user, users, hostelTypes}) => {
                     <div className="complaints">
                         {complaints.map(complaint => {
                              return (
-                                
+
                                 <div key={complaint.id} className="complaint p-3">
                                   <div>
                                       <ul className="list-inline" id="username">
@@ -227,29 +226,32 @@ const Home = ({user, users, hostelTypes}) => {
                       </div>
                     </div>
                 :
-                  <div className="container text-center mt-5">
-                    <BeatLoader loading />
+                  <div className="container text-center">
+                    <BeatLoader color="white" loading />
                   </div>
                 }
               </div>
               
             :   
                 <div className="form-center">
-                  <h3>Welcome</h3> 
-                  <div>
-                   <Button style={{ width: 300 }}
-                           className="mb-3 btn-md btn-dark btn-block" 
-                           onClick={() => routeChange(`/login`)}>
-                       LOGIN
-                   </Button>
-                  </div> 
-                  <div>
-                   <Button style={{ width:300 }}
-                           className=" mb-3 btn-md btn-dark btn-block" 
-                           onClick={() => routeChange(`/signup`)}>
-                       SIGNUP
-                   </Button>
-                  </div> 
+                  <h1>LiveAgent</h1>
+                  <h3>Providing you a better service</h3> 
+                  <div className="half">
+                    <h5 id="big-text">We are here to serve you better. LiveAgent is developed to provide just in time complaints resolution, maintenance and support to your hostel complaints.</h5>
+                    <h5>If you already have an account, please log in</h5>
+                    <Button style={{ width: 300 }}
+                            className="mb-4 btn-lg btn-light btn-block" 
+                            onClick={() => routeChange(`/login`)}>
+                        LOG IN
+                    </Button>
+                    <h5>Or create your profile</h5>
+                    <Button style={{ width:300 }}
+                            className=" btn-lg btn-light btn-block" 
+                            onClick={() => routeChange(`/signup`)}>
+                        SIGN UP
+                    </Button>
+                  </div>
+                  {/* <img id="home-img" src="https://www.futturu.com.br/wp-content/uploads/2018/11/virtualmeeting.jpg" alt="people complaining"></img> */}
                 </div>
             }
         </div>
