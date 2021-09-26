@@ -234,11 +234,11 @@ const Home = ({user, users, hostelTypes}) => {
               </div>
               
             :   <div className="form-center">
-                  <h1>LiveAgent</h1>
+                  <h1>TellTheWarden</h1>
                   <h3><i>Providing you a better service</i></h3> 
                   <div className="half">
-                    <h5 id="big-text">We are here to serve you better. LiveAgent is developed to provide just in time complaints resolution, maintenance and support to your hostel complaints.</h5>
-                    <h5>If you already have an account, please log in</h5>
+                    <h5 id="big-text">This can be used to accept, categorize and track  complaints of hostellers from initiation through resolution. It provides a means to link issues to the administration so they are notified when the complaint has been raised, prioritize complaints using a variety of criteria, alert service personnel and deploy assets to solve those issues, and keep records of complaints for further analysis.</h5>
+                    <h5>Login to Proceed</h5>
                     <Button style={{ width: 300 }}
                             className="mb-4 btn-lg btn-light btn-block" 
                             onClick={() => routeChange(`/login`)}>
