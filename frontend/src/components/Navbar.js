@@ -1,4 +1,4 @@
-import React, { } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Navbar = ({ user }) => {
@@ -19,18 +19,16 @@ const Navbar = ({ user }) => {
           </button>
           <div className="collapse navbar-collapse" id="navmenu">
             <ul className="navbar-nav ms-auto">
-              {user && 
-                  user.role === "admin" && 
-                      <li className="nav-item">
-                        <NavLink
-                          to="/collectors"
-                          className="nav-link"
-                          activeClassName="nav-link active"
-                        >
-                          Log Out
-                        </NavLink>
-                      </li>
-}
+              {user && user.role === "admin" && (
+                <li className="nav-item">
+                  <NavLink
+                    to="/collectors"
+                    className="nav-link"
+                    activeClassName="nav-link active">
+                    Log Out
+                  </NavLink>
+                </li>
+              )}
             </ul>
           </div>
         </div>

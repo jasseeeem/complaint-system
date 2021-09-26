@@ -12,8 +12,6 @@ import "../App.css";
 import { Link } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 
-
-
 const useNotification = () => {
   const [message, setMessage] = useState(null);
   const [messageType, setMessageType] = useState("info");
@@ -56,14 +54,14 @@ const useNotification = () => {
   return [Notification, addNotification];
 };
 
-const Login = ({user, changeUser}) => {
+const Login = ({ user, changeUser }) => {
   const [logging, setLogging] = useState(false);
 
   const [Notification, addNotification] = useNotification();
 
   const history = useHistory();
   useEffect(() => {
-    console.log(user)
+    console.log(user);
     if (user) {
       history.push("/");
       return;
@@ -102,72 +100,68 @@ const Login = ({user, changeUser}) => {
     setLogging(false);
   };
 
-  return (
-      user ? (
-        <></>
-      ) : (
-        <div className="flex-container">
-        <div className="login-block">
-          <Form className="login-form" onSubmit={onLogin}>
-            <h2 className="text-center m-4">Log In</h2>
-            <FormGroup className="mb-3">
-              <Label className="mb-1">Reg. No</Label>
-              <Input
-                type="text"
-                value={regNo}
-                placeholder="Reg. No"
-                onChange={(e) => {
-                  setRegNo(e.target.value);
-                  setRegNoValid(/^[A-Z]+[0-9]+[A-Z]+$/.test(e.target.value));
-                }}
-                invalid={regNoValid === false}
-              ></Input>
-              <FormFeedback invalid>Please enter a valid Reg. No</FormFeedback>
-            </FormGroup>
-            <FormGroup className="mb-3">
-              <Label className="mb-1">Password</Label>
-              <Input
-                type="password"
-                value={password}
-                placeholder="Password"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setPasswordValid(e.target.value !== "");
-                }}
-                invalid={passwordValid === false}
-              ></Input>
-              <FormFeedback invalid>Please enter your password</FormFeedback>
-            </FormGroup>
-            <div className="col text-center">
-              <Button
-                type="submit"
-                style={{ width: 100 }}
-                className=" mb-3 btn-md btn-dark btn-block"
-              >
-                {logging ? (
-                  <Spinner
-                    as="span"
-                    animation="border"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                  />
-                ) : (
-                  "Log In"
-                )}
-              </Button>{" "}
+  return user ? (
+    <></>
+  ) : (
+    <div className="flex-container">
+      <div className="login-block">
+        <Form className="login-form" onSubmit={onLogin}>
+          <h2 className="text-center m-4">Log In</h2>
+          <FormGroup className="mb-3">
+            <Label className="mb-1">Reg. No</Label>
+            <Input
+              type="text"
+              value={regNo}
+              placeholder="Reg. No"
+              onChange={(e) => {
+                setRegNo(e.target.value);
+                setRegNoValid(/^[A-Z]+[0-9]+[A-Z]+$/.test(e.target.value));
+              }}
+              invalid={regNoValid === false}
+            ></Input>
+            <FormFeedback invalid>Please enter a valid Reg. No</FormFeedback>
+          </FormGroup>
+          <FormGroup className="mb-3">
+            <Label className="mb-1">Password</Label>
+            <Input
+              type="password"
+              value={password}
+              placeholder="Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setPasswordValid(e.target.value !== "");
+              }}
+              invalid={passwordValid === false}
+            ></Input>
+            <FormFeedback invalid>Please enter your password</FormFeedback>
+          </FormGroup>
+          <div className="col text-center">
+            <Button
+              type="submit"
+              style={{ width: 100 }}
+              className=" mb-3 btn-md btn-dark btn-block"
+            >
+              {logging ? (
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+              ) : (
+                "Log In"
+              )}
+            </Button>{" "}
+          </div>
+          <div className="text-center">
+            <div className="mb-2 mt-2">
+              <Notification />
             </div>
-            <div className="text-center">
-              
-              <div className="mb-2 mt-2">
-              
-                <Notification />
-              </div>
-            </div>
-          </Form>
-        </div>
-        </div>
-      )
+          </div>
+        </Form>
+      </div>
+    </div>
   );
 };
 
