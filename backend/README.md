@@ -14,6 +14,12 @@ Create a virtual environment and activate it by running the following commands:
 
 ## Step 3:
 
+Install all the modules using the command:
+
+`pip install -r requirements.txt`
+
+## Step 4:
+
 Run the flask backend by typing the command:
 
 `flask run`
