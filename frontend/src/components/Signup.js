@@ -6,7 +6,7 @@ import {
   Label,
   Input,
   FormGroup,
-  FormFeedback
+  FormFeedback,
 } from "reactstrap";
 import Select from "react-select";
 import "../App.css";
@@ -16,15 +16,15 @@ import { Link } from "react-router-dom";
 const customStyles = {
   option: (provided) => ({
     ...provided,
-    color: 'black'
+    color: "black",
   }),
   dropdownIndicator: (provided) => ({
     ...provided,
-    "svg": {
-      fill: "black"
-    }
+    svg: {
+      fill: "black",
+    },
   }),
-}
+};
 const useNotification = () => {
   const [message, setMessage] = useState(null);
   const [messageType, setMessageType] = useState("info");
@@ -68,7 +68,6 @@ const useNotification = () => {
 };
 
 const Signup = ({ user, changeUser }) => {
-
   const history = useHistory();
 
   useEffect(() => {
@@ -94,9 +93,8 @@ const Signup = ({ user, changeUser }) => {
     {
       label: "Faculty",
       value: 2,
-    }
+    },
   ]);
-
 
   const [password, setPassword] = useState("");
   const [repassword, setRepassword] = useState("");
@@ -129,20 +127,25 @@ const Signup = ({ user, changeUser }) => {
       return;
     }
     setAdding(true);
-    let response = await fetch(process.env.REACT_APP_API_URL + "/users/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: name,
-        regno: regNo,
-        userType: userTypes.filter(x => x.value === 0)[0].label.toLowerCase(),
-        password: password,
-      }),
-    });
+    let response = await fetch(
+      process.env.REACT_APP_API_URL + "/users/signup",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name,
+          regno: regNo,
+          userType: userTypes
+            .filter((x) => x.value === 0)[0]
+            .label.toLowerCase(),
+          password: password,
+        }),
+      }
+    );
     if (response.ok) {
-      response = await response.json()
+      response = await response.json();
       await changeUser(response);
-      history.push('/');
+      history.push("/");
       return;
     }
     setAdding(false);
@@ -157,7 +160,7 @@ const Signup = ({ user, changeUser }) => {
         <div className="flex-container">
           <div className="login-block">
             <Form className="login-form" onSubmit={onSignup}>
-            <h2 className="text-center m-4">Sign Up</h2>
+              <h2 className="text-center m-4">Sign Up</h2>
               <FormGroup className="mb-3">
                 <Label className="mb-1">Full Name</Label>
                 <Input
@@ -185,12 +188,14 @@ const Signup = ({ user, changeUser }) => {
                   }}
                   invalid={regNoValid === false}
                 ></Input>
-                <FormFeedback invalid>Please enter a valid Roll Number</FormFeedback>
+                <FormFeedback invalid>
+                  Please enter a valid Roll Number
+                </FormFeedback>
               </FormGroup>
               <FormGroup className="mb-3">
                 <Label className="mb-1">User Type</Label>
                 <Select
-                className="Dropdown"
+                  className="Dropdown"
                   value={userTypes.filter(
                     (option) => option.value === userType
                   )}
@@ -263,7 +268,7 @@ const Signup = ({ user, changeUser }) => {
               </div>
             </Form>
           </div>
-          </div>
+        </div>
       )}
     </>
   );
