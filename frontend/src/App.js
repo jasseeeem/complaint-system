@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./components/Login.js";
 import Signup from "./components/Signup.js";
 import Home from "./components/Home.js";
+import Navbar from "./components/Navbar.js";
 import AddComplaint from "./components/AddComplaint.js";
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -15,6 +16,65 @@ function App() {
   const changeUser = async(data) => {
     setUser(data);
   }
+
+  const [hostelTypes, setHostelTypes] = useState([
+    {
+      label: "A Hostel",
+      value: 1,
+    },
+    {
+      label: "B Hostel",
+      value: 2,
+    },
+    {
+      label: "C Hostel",
+      value: 3,
+    },
+    {
+        label: "D Hostel",
+        value: 4,
+      },
+      {
+        label: "E Hostel",
+        value: 5,
+      },
+      {
+        label: "F Hostel",
+        value: 6,
+      },
+      {
+        label: "G Hostel",
+        value: 7,
+      },
+      {
+        label: "Mega Hostel",
+        value: 8,
+      },
+      {
+        label: "PG1 Hostel",
+        value: 9,
+      },
+      {
+          label: "PG2 Hostel",
+          value: 10,
+        },
+        {
+          label: "INH Hostel",
+          value: 11,
+        },
+        {
+          label: "MBA Hostel",
+          value: 12,
+        },
+        {
+          label: "IDM Hostel",
+          value: 13,
+        },
+        {
+          label: "LH Hostel",
+          value: 14,
+        }
+  ])
 
   useEffect(() => {
     (async () => {
@@ -51,12 +111,13 @@ function App() {
     <div className="container">
       {loading && 
       <BrowserRouter>
+        {/* <Navbar user={user} /> */}
         <Switch>
           <Route
             path="/"
             exact
             render={() => (
-              <Home user={user} users={users} />
+              <Home user={user} users={users} hostelTypes={hostelTypes} />
             )}
           />
           <Route
@@ -77,7 +138,7 @@ function App() {
             path="/add"
             exact
             render={() => (
-              <AddComplaint user={user} />
+              <AddComplaint user={user} hostelTypes={hostelTypes} />
             )}
           />
         </Switch>

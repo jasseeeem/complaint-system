@@ -12,7 +12,7 @@ import Select from "react-select";
 import { AiFillLike, AiOutlineLike } from 'react-icons/ai'
 import { BeatLoader } from "react-spinners";
 
-const Home = ({user, users}) => {
+const Home = ({user, users, hostelTypes}) => {
     const history = useHistory();
     const [complaintsLoading, setComplaintsLoading] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -99,13 +99,24 @@ const Home = ({user, users}) => {
         return false;
     }
     
+    const customStyles = {
+      option: (provided) => ({
+        ...provided,
+        color: 'black'
+      }),
+      dropdownIndicator: (provided) => ({
+        ...provided,
+        "svg": {
+          fill: "black"
+        }
+      }),
+    }
 
     const routeChange = (path) =>{
       history.push(path)
     }
 
     const updateComplaints = async(sorttype) => {
-      setComplaintsLoading(true);
       let response = await fetch(process.env.REACT_APP_API_URL + "/complaints/sort/"+sorttype+"/", {
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -124,7 +135,7 @@ const Home = ({user, users}) => {
     useEffect(() => {
         (async () => {
             setComplaintsLoading(false);
-            let res = await fetch(process.env.REACT_APP_API_URL + "/complaints/sort/0/", {
+            let res = await fetch(process.env.REACT_APP_API_URL + "/complaints/sort/1/", {
               headers: { "Content-Type": "application/json" },
               credentials: "include",
             });
@@ -147,16 +158,18 @@ const Home = ({user, users}) => {
              <div>
                 <div className="top">
                   <div className="sort">
-                    <h5 className="me-3 pt-2">Sort by: </h5>
+                    <h5 className="me-3 pt-2">Sort by</h5>
                     <Select
                       className="Dropdown"
                       value={sortTypes.filter(
                         (option) => option.value === sortType
                       )}
+                      styles={customStyles}
+                      isSearchable={false}
                       options={sortTypes}
                       onChange={(e) => {
                         setSortType(e.value);
-                        setComplaintsLoading(true);
+                        setComplaintsLoading(false);
                         updateComplaints(e.value);
                       }}
                       noOptionsMessage={() => "User type doesn't exist"}
@@ -180,13 +193,14 @@ const Home = ({user, users}) => {
                                 
                                 <div key={complaint.id} className="complaint p-3">
                                   <div>
-                                      <ul className="list-inline">
+                                      <ul className="list-inline" id="username">
                                         <li className="list-inline-item"><h5>{complaint.user.name}</h5></li>
                                         <li className="list-inline-item"> • </li>
                                         <li className="list-inline-item">{timeSince(new Date(complaint.set_time + " UTC"))}</li>
                                       </ul>
-                                      <h4>{complaint.title}</h4>
-                                      <p>{complaint.description}</p>
+                                      <h4 id="title">{complaint.title}</h4>
+                                      <p id="description">{complaint.description}</p>
+                                      <p id="hostel">{complaint.hostel_id && hostelTypes.filter(hostelType => complaint.hostel_id === hostelType.value)[0].label}{complaint.room_no && " • "+"Room "+complaint.room_no}</p>
                                       <div className="mobile-view">
                                         {userLiked(complaint) ? <AiFillLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} /> : <AiOutlineLike className="me-2" size="20" onClick={() => likeComplaint(complaint.id)} />}
                                         <span>{complaint.likes.length ? (complaint.likes.length > 1 ? complaint.likes.length + " likes": "1 like") : ""}</span>

@@ -34,10 +34,17 @@ def like_complaint(complaint_id):
         like = Vote(user_id=user_id, complaint_id=complaint_id)
         db.session.add(like)
         db.session.commit()
+        complaint = Complaint.query.filter(Complaint.id == complaint_id).first()
+        complaint.votes = complaint.votes + 1
+        db.session.commit()
         db.session.remove()
         return jsonify({'message': "post liked"}, 201)
     db.session.delete(like)
     db.session.commit()
+    complaint = Complaint.query.filter(Complaint.id == complaint_id).first()
+    complaint.votes = complaint.votes - 1
+    db.session.commit()
+    db.session.remove()
     return jsonify({'message': 'post unliked'}, 204)
 
 # @applet.route('/<complaint_id>', methods=['PUT'])
@@ -57,15 +64,14 @@ def get_all_complaints(sort_type):
     except:
         return {'message': 'wrong endpoint'} , 404
     complaints = None
-    if sort_type == 0:
+    if sort_type == 1:
         complaints = Complaint.query.order_by(Complaint.set_time.desc()).limit(10).all()
-    elif sort_type == 1:
-        complaints = Complaint.query.limit(10).all()
     elif sort_type == 2:
-        pass
+        complaints = Complaint.query.limit(10).all()
     elif sort_type == 3:
-        pass
-        
+        complaints = Complaint.query.order_by(Complaint.votes.desc()).limit(10).all()
+    elif sort_type == 4:
+        complaints = Complaint.query.order_by(Complaint.votes).limit(10).all()
     response = [complaint.to_dict() for complaint in complaints]
     for complaint in response:
         likes = Vote.query.filter(Vote.complaint_id == complaint['id']).all()

@@ -27,15 +27,9 @@
   background-color: rgba(236, 239, 243, 0.712);
   width: 5px;
 }
-
 html {
   height: 100%;
 }
-
-html {
-  height: 100%;
-}
-
 #complaint_button{
 width: max-content;
 padding: 9px;
@@ -45,7 +39,6 @@ align-items: center;
 justify-content: center;
 min-width: 70vw;
 }
-
 body {
   /* height: 100vh; */
   /* width: 100%; */
@@ -57,7 +50,6 @@ body {
     
   background-attachment: fixed;
 }
-
 .form-center {
   width: max-content;
 padding: 9px;
@@ -67,11 +59,6 @@ align-items: center;
 justify-content: center;
 min-width: 70vw;
 }
-
-/* Form {
-  border: 2px solid black;
-} */
-
 .container {
   min-height: 100vh;
   padding: 0;
@@ -81,7 +68,6 @@ min-width: 70vw;
   justify-content: center;
   min-width: 70vw;
 }
-
 .flex-container{
   min-height: 100vh;
   padding: 0;
@@ -90,8 +76,6 @@ min-width: 70vw;
   align-items: center;
   justify-content: center;
 }
-
-
 .flex-container1{
   min-height: 100vh;
   padding: 0;
@@ -99,7 +83,6 @@ min-width: 70vw;
   display: flex;
   justify-content: center;
 }
-
 .login-block {
   border-radius: 8px;
   box-shadow:1px 15px 10px 8px rgba(0, 0, 0, 0.123);
@@ -107,34 +90,27 @@ min-width: 70vw;
   width: 500px;
   max-width: 85vw;
 }
-
 .login-block1 {
   overflow-y:scroll ;
   border-radius: 8px;
   box-shadow:1px 15px 10px 8px rgba(0, 0, 0, 0.123);
   background-color:rgba(224, 240, 255, 0.185);
-  max-height: 75vh;
+  max-height: 85vh;
   width: 800px;
   max-width: 85vw;
 }
-
-
 Button{
   border-radius: 200px;
 }
-
 .Dropdown{
   color: #000428;
 }
-
 .welcome{
   align-items: center;
   justify-content: center;
   padding-left: 25%;
   padding-right: 25%;
 }
-
-
 .login-form {
   width: 100%;
   max-width: 330px;
@@ -142,26 +118,16 @@ Button{
   margin: auto;
   height: 100%;
 }
-
-/* .complaints {
-  min-width: 100%;
-} */
 .complaint {
   color: white;
   border-bottom: 1px solid rgba(255, 255, 255, 0.74);
-  /* background-color: ligh; */
 }
-
 .first-line {
   display: inline-block
 }
-
-
-
 h3{
   color:rgb(236, 246, 255);
 }
-
 .complaint {
   display: flex;
   flex-direction: row;
@@ -180,16 +146,29 @@ h3{
 .top {
   display: flex;
   justify-content: space-between;
-  /* margin-top: 15px; */
+  margin-top: 15px;
 }
-
+#username {
+  margin-bottom: 0;
+}
+#description {
+  margin-bottom: 3px;
+}
+#hostel {
+  margin-bottom: 7px;
+}
+#title {
+  margin-bottom: 7px;
+}
 
 @media (max-width: 480px) {
   .mobile-view {
     display: none;
   }
   .lap-view {
-    display: inline-block;
+    margin-top: 10px;
+    display: block;
+    
   }
   .complaint {
     flex-direction: column;
@@ -197,14 +176,14 @@ h3{
   .complaint-image {
     max-width: 100%;
     max-height: 100%;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
   .sort {
-
+    margin-bottom: 15px;
   }
   .top {
     flex-direction: column;
-    margin-top: 30px;
   }
   .post-button {
     width: 100%;

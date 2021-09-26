@@ -56,7 +56,7 @@ const useNotification = () => {
     return [Notification, addNotification];
   };
   
-const AddComplaint = ({ user }) => {
+const AddComplaint = ({ user, hostelTypes }) => {
 
     const history = useHistory();
 
@@ -68,65 +68,6 @@ const AddComplaint = ({ user }) => {
     const [adding, setAdding] = useState(false);
     const [hostelType, setHostelType] = useState(null);
     const [image, setImage] = useState("")
-    const [hostelTypes, setHostelTypes] = useState([
-        {
-          label: "A Hostel",
-          value: 1,
-        },
-        {
-          label: "B Hostel",
-          value: 2,
-        },
-        {
-          label: "C Hostel",
-          value: 3,
-        },
-        {
-            label: "D Hostel",
-            value: 4,
-          },
-          {
-            label: "E Hostel",
-            value: 5,
-          },
-          {
-            label: "F Hostel",
-            value: 6,
-          },
-          {
-            label: "G Hostel",
-            value: 7,
-          },
-          {
-            label: "Mega Hostel",
-            value: 8,
-          },
-          {
-            label: "PG1 Hostel",
-            value: 9,
-          },
-          {
-              label: "PG2 Hostel",
-              value: 10,
-            },
-            {
-              label: "INH Hostel",
-              value: 11,
-            },
-            {
-              label: "MBA Hostel",
-              value: 12,
-            },
-            {
-              label: "IDM Hostel",
-              value: 13,
-            },
-            {
-              label: "LH Hostel",
-              value: 14,
-            }
-
-      ])
 
       function getBase64Image(image){     
         var dataURL = image.toDataURL("image/png");
