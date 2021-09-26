@@ -132,17 +132,25 @@ Button{
 .first-line {
   display: inline-block
 }
-#big-text {
+
+#big-text  {
+  color: rgba(236, 216, 215, 0.87);
   margin-bottom: 30px;
 }
+
+h5{
+  color: rgba(252, 236, 236, 0.966);
+
+}
+
 #home-img {
   position: relative;
   width: 500px;
   height: auto;
   clip: rect(0px, 60px, 200px, 0px);
 }
-h3{
-  color:rgb(236, 246, 255);
+h3 i{
+  color:rgba(180, 207, 230, 0.856);
 }
 .complaint {
   display: flex;
@@ -163,6 +171,13 @@ h3{
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
+}
+#container-navbar {
+  padding: 5px 100px 5px 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100vw;
 }
 #username {
   margin-bottom: 0;
@@ -204,6 +219,7 @@ h3{
   .complaint {
     flex-direction: column;
   }
+  
   .complaint-image {
     max-width: 100%;
     max-height: 100%;
@@ -218,5 +234,8 @@ h3{
   }
   .post-button {
     width: 100%;
+  }
+  #container-navbar {
+    padding: 0px 20px 0px 20px;
   }
 }

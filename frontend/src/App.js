@@ -108,10 +108,14 @@ function App() {
   }, []);
 
   return (
-    <div className="container">
+    <div>
       {loading && 
       <BrowserRouter>
-        {/* <Navbar user={user} /> */}
+        <div className="front">
+          <div>
+            <Navbar user={user} />
+          </div>
+          <div className="container">
         <Switch>
           <Route
             path="/"
@@ -142,6 +146,8 @@ function App() {
             )}
           />
         </Switch>
+        </div>
+        </div>
       </BrowserRouter>
 }
     </div>

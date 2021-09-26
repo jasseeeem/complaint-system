@@ -5,34 +5,17 @@ const Navbar = ({ user }) => {
   return (
     <>
       <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div className="container">
+        <div id="container-navbar">
           <NavLink to="/" className="navbar-brand">
-            Complaint Filing System
+            TellTheWarden
           </NavLink>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navmenu"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navmenu">
             <ul className="navbar-nav ms-auto">
-              {user && 
-                  user.role === "admin" && 
-                      <li className="nav-item">
-                        <NavLink
-                          to="/collectors"
-                          className="nav-link"
-                          activeClassName="nav-link active"
-                        >
-                          Log Out
-                        </NavLink>
-                      </li>
-}
+              {user &&
+                <li className="nav-item">
+                  <span className="nav-link">Log Out</span>
+                </li>
+              }
             </ul>
-          </div>
         </div>
       </nav>
     </>

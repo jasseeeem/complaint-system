@@ -12,6 +12,18 @@ import "../App.css";
 import Spinner from "react-bootstrap/Spinner";
 import Select from "react-select";
 
+const customStyles = {
+  option: (provided) => ({
+    ...provided,
+    color: 'black'
+  }),
+  dropdownIndicator: (provided) => ({
+    ...provided,
+    "svg": {
+      fill: "black"
+    }
+  }),
+}
 const useNotification = () => {
     const [message, setMessage] = useState(null);
     const [messageType, setMessageType] = useState("info");
@@ -53,6 +65,7 @@ const useNotification = () => {
   
     return [Notification, addNotification];
   };
+ 
   
 const AddComplaint = ({ user, hostelTypes }) => {
 
@@ -71,7 +84,7 @@ const AddComplaint = ({ user, hostelTypes }) => {
         var dataURL = image.toDataURL("image/png");
         return dataURL;
     } 
-
+  
     const onAdd = async(e) => {
         e.preventDefault();
         setAdding(true)
@@ -162,6 +175,7 @@ const AddComplaint = ({ user, hostelTypes }) => {
                   value={hostelTypes.filter(
                     (option) => option.value === hostelType
                   )}
+                  styles={customStyles}
                   className="Dropdown"
                   options={hostelTypes}
                   placeholder="Select hostel"

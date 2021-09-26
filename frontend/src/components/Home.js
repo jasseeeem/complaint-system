@@ -226,16 +226,15 @@ const Home = ({user, users, hostelTypes}) => {
                       </div>
                     </div>
                 :
-                  <div className="container text-center">
+                  <div className="container text-center ">
                     <BeatLoader color="white" loading />
                   </div>
                 }
               </div>
               
-            :   
-                <div className="form-center">
+            :   <div className="form-center">
                   <h1>LiveAgent</h1>
-                  <h3>Providing you a better service</h3> 
+                  <h3><i>Providing you a better service</i></h3> 
                   <div className="half">
                     <h5 id="big-text">We are here to serve you better. LiveAgent is developed to provide just in time complaints resolution, maintenance and support to your hostel complaints.</h5>
                     <h5>If you already have an account, please log in</h5>
@@ -250,9 +249,9 @@ const Home = ({user, users, hostelTypes}) => {
                             onClick={() => routeChange(`/signup`)}>
                         SIGN UP
                     </Button>
-                  </div>
-                  {/* <img id="home-img" src="https://www.futturu.com.br/wp-content/uploads/2018/11/virtualmeeting.jpg" alt="people complaining"></img> */}
-                </div>
+                    </div>
+                </div> 
+                    
             }
         </div>
     );

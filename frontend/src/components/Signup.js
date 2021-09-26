@@ -13,6 +13,18 @@ import "../App.css";
 import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
 
+const customStyles = {
+  option: (provided) => ({
+    ...provided,
+    color: 'black'
+  }),
+  dropdownIndicator: (provided) => ({
+    ...provided,
+    "svg": {
+      fill: "black"
+    }
+  }),
+}
 const useNotification = () => {
   const [message, setMessage] = useState(null);
   const [messageType, setMessageType] = useState("info");
@@ -182,6 +194,7 @@ const Signup = ({ user, changeUser }) => {
                   value={userTypes.filter(
                     (option) => option.value === userType
                   )}
+                  styles={customStyles}
                   options={userTypes}
                   placeholder="Select user type"
                   isSearchable
