@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Navbar = ({ user }) => {
+const Navbar = ({ user, logout }) => {
   return (
     <>
       <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -11,7 +11,7 @@ const Navbar = ({ user }) => {
           </NavLink>
             <ul className="navbar-nav ms-auto">
               {user &&
-                <li className="nav-item">
+                <li className="nav-item" onClick={logout}>
                   <span className="nav-link">Log Out</span>
                 </li>
               }
