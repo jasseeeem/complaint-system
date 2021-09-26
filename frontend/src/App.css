@@ -172,6 +172,13 @@ h3 i{
   justify-content: space-between;
   margin-top: 15px;
 }
+#container-navbar {
+  padding: 5px 100px 5px 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100vw;
+}
 #username {
   margin-bottom: 0;
 }
@@ -183,6 +190,26 @@ h3 i{
 }
 #title {
   margin-bottom: 7px;
+}
+#navbar {
+  height: 30px;
+  max-height: 30px;
+  /* position:fixed;
+    top:0;
+    width:100%;
+    z-index:100; */
+}
+.main {
+  display: flex;
+  flex-direction: column;
+}
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 1.5em;
+}
+.navbar-nav {
+  cursor: pointer
 }
 
 @media (max-width: 480px) {
@@ -215,5 +242,8 @@ h3 i{
   }
   .post-button {
     width: 100%;
+  }
+  #container-navbar {
+    padding: 0px 20px 0px 20px;
   }
 }

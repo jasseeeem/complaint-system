@@ -10,7 +10,6 @@ import {
   Checkbox,
 } from "reactstrap";
 import "../App.css";
-import { Link } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import Select from "react-select";
 

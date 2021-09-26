@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   Form,
   Button,
@@ -9,7 +9,6 @@ import {
   FormFeedback,
 } from "reactstrap";
 import "../App.css";
-import { Link } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 
 const useNotification = () => {

@@ -145,7 +145,6 @@ const Home = ({user, users, hostelTypes}) => {
               const peopleArray = Object.keys(res).map(i => res[i])
               await addArray(peopleArray);
               setComplaintsLoading(true);
-              console.log(complaints)
             } else {
               setComplaints([]);
             };
@@ -177,7 +176,7 @@ const Home = ({user, users, hostelTypes}) => {
                   </div>
                   <div>
                     <Button
-                      className="mb-3 btn-md btn-dark post-button" 
+                      className="mb-3 btn-md btn-light post-button" 
                       onClick={() => routeChange(`/add`)}>
                       POST COMPLAINT
                       </Button>
@@ -190,7 +189,7 @@ const Home = ({user, users, hostelTypes}) => {
                     <div className="complaints">
                         {complaints.map(complaint => {
                              return (
-                                
+
                                 <div key={complaint.id} className="complaint p-3">
                                   <div>
                                       <ul className="list-inline" id="username">

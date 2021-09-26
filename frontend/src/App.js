@@ -17,6 +17,20 @@ function App() {
     setUser(data);
   }
 
+  const logout = async() => {
+    let response = await fetch(process.env.REACT_APP_API_URL + "/users/logout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    });
+    if(response.ok) {
+      setUser(null);
+    }
+    else {
+      console.log("Log Out error");
+    }
+  }
+
   const [hostelTypes, setHostelTypes] = useState([
     {
       label: "A Hostel",
@@ -108,10 +122,14 @@ function App() {
   }, []);
 
   return (
-    <div className="container">
+    <div>
       {loading && 
       <BrowserRouter>
-        {/* <Navbar user={user} /> */}
+        <div className="front">
+          <div>
+            <Navbar user={user} logout={logout} />
+          </div>
+          <div className="container">
         <Switch>
           <Route
             path="/"
@@ -142,6 +160,8 @@ function App() {
             )}
           />
         </Switch>
+        </div>
+        </div>
       </BrowserRouter>
 }
     </div>
