@@ -1,4 +1,4 @@
-# complaint-system
+# Complaint Filling System
 
 This is a web app for NITC students to file hostel complaints made as part of CodeInit() - 2021. 
 
