@@ -7,3 +7,9 @@ TellTheWarden is a web app for NITC students to file hostel complaints made as p
 Clone the repository and follow the instructions in the respective folders to run the web app.
 
 Note: The environmental variables required has not been pushed to github.
+
+## Upcoming Features
+  1. Better UI/UX
+  2. Having an option to report complaints
+  3. Feedback for different complaints
+  4. Status of complaints
